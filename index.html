@@ -229,9 +229,9 @@ nav.scrolled { padding: 14px 48px; }
 }
 
 .hero-name {
-  font-size: clamp(3.5rem, 7vw, 6rem);
+  font-size: clamp(3rem, 6.5vw, 5rem);
   font-weight: 800;
-  line-height: 1.1; display: block; max-width: 600px;
+  line-height: 1.0; display: block; max-width: 700px; margin-bottom: 24px;
   letter-spacing: -0.03em;
   margin-bottom: 16px;
   opacity: 0;
@@ -349,7 +349,7 @@ nav.scrolled { padding: 14px 48px; }
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 20px;
-  padding: 36px;
+  padding: 28px;
   position: relative;
   overflow: hidden;
   transition: border-color 0.3s, transform 0.3s var(--ease);
@@ -436,8 +436,8 @@ nav.scrolled { padding: 14px 48px; }
   white-space: nowrap;
   animation: float-tag 4s ease-in-out infinite;
 }
-.floating-tag-1 { top: -10px; right: -20px; z-index: 10; animation-delay: 0s; }
-.floating-tag-2 { bottom: 20px; left: -40px; z-index: 10; animation-delay: 1.5s; }
+.floating-tag-1 { top: -40px; right: -10px; z-index: 10; animation-delay: 0s; }
+.floating-tag-2 { bottom: -20px; left: -40px; z-index: 10; animation-delay: 1.5s; }
 .floating-tag-accent { color: var(--accent2); }
 @keyframes float-tag { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
 
@@ -1117,6 +1117,15 @@ footer {
         <i class="devicon-python-plain colored"></i>
         <div class="skill-name">Python</div>
       </div>
+      
+      <div class="skill-card reveal reveal-delay-2">
+        <i class="fa-solid fa-network-wired" style="color:#1BA0D7;font-size:2rem;margin-bottom:10px;display:block;"></i>
+        <div class="skill-name">Network Automation</div>
+      </div>
+      <div class="skill-card reveal reveal-delay-3">
+        <i class="fa-solid fa-shield-halved" style="color:#EF4444;font-size:2rem;margin-bottom:10px;display:block;"></i>
+        <div class="skill-name">Cybersecurity</div>
+      </div>
       <div class="skill-card reveal reveal-delay-2">
         <i class="devicon-react-original colored"></i>
         <div class="skill-name">React</div>
@@ -1228,6 +1237,12 @@ footer {
   <div class="section-inner">
     <div class="section-label">Credentials</div>
     <h2 class="section-title reveal">Verified <em>expertise</em></h2>
+    <div class="text-center mb-12">
+      <a href="https://www.credly.com/users/benedictus-owambo" target="_blank" class="btn-ghost">
+        <i class="fa-solid fa-certificate mr-2"></i>
+        View Verified Credentials on Credly
+      </a>
+    </div>
     <div class="certs-grid">
       <a href="https://github.com/okellodev/okellodev/blob/main/certs/aws-cert.pdf" target="_blank" class="cert-card reveal">
         <i class="fa-brands fa-aws cert-issuer-icon" style="color:#FF9900"></i>
@@ -1246,7 +1261,7 @@ footer {
         <div class="cert-arrow">View credential <i class="fa-solid fa-arrow-right"></i></div>
       </a>
       <a href="https://github.com/okellodev/okellodev/blob/main/certs/devnet-associate.pdf" target="_blank" class="cert-card reveal reveal-delay-2">
-        <i class="fa-solid fa-network-wired cert-issuer-icon" style="color:#1BA0D7"></i>
+        <img src="./devnet-badge.png" alt="Cisco Badge" width="60" class="mb-2">
         <div>
           <div class="cert-name">DevNet Associate</div>
           <div class="cert-issuer">Cisco Networking Academy</div>
