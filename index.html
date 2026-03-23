@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Okello | System Architect</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons (FontAwesome for Socials, Devicon for Tech Skills) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            50: '#f0f4f8',
+                            100: '#d9e2ec',
+                            500: '#334e68',
+                            800: '#102a43',
+                            900: '#0b1c2c', // Deep Navy
+                        },
+                        accent: '#3b82f6', // Bright Blue
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-navy-50 text-gray-800 antialiased flex flex-col min-h-screen">
+
+    <!-- Hero Section (Dark Navy) -->
+    <section class="bg-navy-900 text-white py-24 px-6">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12">
+            <!-- Profile Picture -->
+            <div class="flex-shrink-0 relative">
+                <div class="w-48 h-48 rounded-full overflow-hidden border-4 border-accent shadow-2xl">
+                    <!-- Using GitHub Avatar as a highly relevant placeholder -->
+                    <img src="https://github.com/okellodev.png" alt="Okello Profile Picture" class="w-full h-full object-cover">
+                </div>
+                <div class="absolute bottom-2 right-2 bg-accent w-8 h-8 rounded-full border-2 border-navy-900 flex items-center justify-center">
+                    <i class="fa-solid fa-check text-white text-sm"></i>
+                </div>
+            </div>
+            
+            <!-- Hero Text -->
+            <div class="text-center md:text-left">
+                <h1 class="text-5xl md:text-6xl font-bold tracking-tight mb-4">Okello</h1>
+                <h2 class="text-2xl md:text-3xl font-medium text-blue-300 mb-6">System Architect</h2>
+                <p class="text-lg text-gray-300 max-w-2xl leading-relaxed mb-8">
+                    I am a passionate developer crafting beautiful, scalable, and functional software systems. I specialize in both frontend architecture and backend APIs, bridging the gap between elegant design and robust system performance.
+                </p>
+                <div class="flex flex-wrap justify-center md:justify-start gap-4">
+                    <a href="#contact" class="px-8 py-3 bg-accent hover:bg-blue-600 text-white font-semibold rounded-lg transition shadow-lg shadow-blue-500/30">
+                        Get In Touch
+                    </a>
+                    <a href="https://github.com/okellodev" target="_blank" class="px-8 py-3 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg transition backdrop-blur-sm border border-white/10">
+                        <i class="fa-brands fa-github mr-2"></i> View GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Hobbies (White Background) -->
+    <section class="bg-white py-20 px-6 border-b border-gray-200">
+        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-16">
+            <!-- Education -->
+            <div>
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-accent">
+                        <i class="fa-solid fa-graduation-cap text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-navy-900">Education & Journey</h3>
+                </div>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                    My educational journey is a continuous process of diving deeper into advanced software engineering practices. I believe in a hands-on approach, learning through building real-world applications and attaining industry-recognized certifications.
+                </p>
+                <p class="text-gray-600 leading-relaxed">
+                    Rather than sticking to a single path, I actively explore new fields in computer science, adapting to modern tech stacks and architectural paradigms to remain at the cutting edge of the industry.
+                </p>
+            </div>
+
+            <!-- Hobbies -->
+            <div>
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-accent">
+                        <i class="fa-solid fa-gamepad text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-navy-900">Beyond the Code</h3>
+                </div>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                    When I'm not architecting enterprise systems, I thoroughly enjoy <strong class="text-navy-900">"vibe coding"</strong>. This means getting into a creative flow state to build passion projects and experiment with fresh ideas without the pressure of deadlines.
+                </p>
+                <p class="text-gray-600 leading-relaxed">
+                    It helps me keep the art of software development fun, allowing me to play with new UI libraries, test unconventional database structures, and remember why I fell in love with coding in the first place.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills & Tech Stack (Light Navy Mix) -->
+    <section class="bg-navy-50 py-20 px-6">
+        <div class="max-w-5xl mx-auto">
+            <h3 class="text-3xl font-bold text-navy-900 text-center mb-12">Technical Arsenal</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 text-center">
+                <!-- Skill Items -->
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100">
+                    <i class="devicon-javascript-plain colored text-4xl mb-3"></i>
+                    <div class="font-medium text-gray-700">JavaScript</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100">
+                    <i class="devicon-python-plain colored text-4xl mb-3"></i>
+                    <div class="font-medium text-gray-700">Python</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100">
+                    <i class="devicon-react-original colored text-4xl mb-3"></i>
+                    <div class="font-medium text-gray-700">React</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100">
+                    <i class="devicon-nodejs-plain colored text-4xl mb-3"></i>
+                    <div class="font-medium text-gray-700">Node.js</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100">
+                    <i class="devicon-docker-plain colored text-4xl mb-3"></i>
+                    <div class="font-medium text-gray-700">Docker</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100">
+                    <i class="devicon-amazonwebservices-original colored text-4xl mb-3"></i>
+                    <div class="font-medium text-gray-700">AWS</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100">
+                    <i class="devicon-html5-plain colored text-4xl mb-3"></i>
+                    <div class="font-medium text-gray-700">HTML5</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100">
+                    <i class="devicon-css3-plain colored text-4xl mb-3"></i>
+                    <div class="font-medium text-gray-700">CSS3</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100">
+                    <i class="devicon-git-plain colored text-4xl mb-3"></i>
+                    <div class="font-medium text-gray-700">Git</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100">
+                    <i class="devicon-linux-plain text-gray-800 text-4xl mb-3"></i>
+                    <div class="font-medium text-gray-700">Linux</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Featured Projects (Light Navy Mix or White) -->
+    <section class="bg-navy-50 py-20 px-6 border-t border-gray-200">
+        <div class="max-w-5xl mx-auto">
+            <h3 class="text-3xl font-bold text-navy-900 text-center mb-4">Featured Projects</h3>
+            <p class="text-center text-gray-500 mb-12">Public repositories and system architectures I am collaborating on.</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Project 1 -->
+                <a href="https://github.com/okellodev/Stretch_Therapy" target="_blank" class="group block p-6 bg-white border border-gray-200 rounded-xl hover:border-accent hover:shadow-lg transition">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center text-accent">
+                            <i class="fa-solid fa-heart-pulse text-2xl"></i>
+                        </div>
+                        <i class="fa-brands fa-github text-gray-300 group-hover:text-accent transition text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-navy-900 mb-2">Stretch Therapy</h4>
+                    <p class="text-sm text-gray-600 mb-4 line-clamp-2">A comprehensive stretch therapy web project with integrated booking and backend services.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-[10px] px-2 py-1 bg-gray-100 text-gray-600 rounded uppercase font-semibold">Python</span>
+                        <span class="text-[10px] px-2 py-1 bg-gray-100 text-gray-600 rounded uppercase font-semibold">JS</span>
+                    </div>
+                </a>
+
+                <!-- Project 2 -->
+                <a href="https://github.com/okellodev/tra-koyeb" target="_blank" class="group block p-6 bg-white border border-gray-200 rounded-xl hover:border-accent hover:shadow-lg transition">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center text-accent">
+                            <i class="fa-solid fa-server text-2xl"></i>
+                        </div>
+                        <i class="fa-brands fa-github text-gray-300 group-hover:text-accent transition text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-navy-900 mb-2">tra-koyeb</h4>
+                    <p class="text-sm text-gray-600 mb-4 line-clamp-2">A deployment environment repository containing robust configurations and automated services.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-[10px] px-2 py-1 bg-gray-100 text-gray-600 rounded uppercase font-semibold">DevOps</span>
+                        <span class="text-[10px] px-2 py-1 bg-gray-100 text-gray-600 rounded uppercase font-semibold">Docker</span>
+                    </div>
+                </a>
+
+                <!-- Project 3 -->
+                <a href="https://github.com/okellodev/Guerison" target="_blank" class="group block p-6 bg-white border border-gray-200 rounded-xl hover:border-accent hover:shadow-lg transition">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center text-accent">
+                            <i class="fa-solid fa-mobile-screen text-2xl"></i>
+                        </div>
+                        <i class="fa-brands fa-github text-gray-300 group-hover:text-accent transition text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-navy-900 mb-2">Guerison</h4>
+                    <p class="text-sm text-gray-600 mb-4 line-clamp-2">A modern frontend/expo application setup featuring core environment configurations.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-[10px] px-2 py-1 bg-gray-100 text-gray-600 rounded uppercase font-semibold">React Native</span>
+                        <span class="text-[10px] px-2 py-1 bg-gray-100 text-gray-600 rounded uppercase font-semibold">Expo</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications (White Background) -->
+    <section class="bg-white py-20 px-6 border-y border-gray-200">
+        <div class="max-w-5xl mx-auto">
+            <h3 class="text-3xl font-bold text-navy-900 text-center mb-4">Certifications</h3>
+            <p class="text-center text-gray-500 mb-12">Verified credentials validating my expertise.</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Cert 1 -->
+                <a href="https://github.com/okellodev/okellodev/blob/main/certs/aws-cert.pdf" target="_blank" class="group block p-6 bg-white border border-gray-200 rounded-xl hover:border-accent hover:shadow-lg transition">
+                    <div class="flex items-start justify-between mb-4">
+                        <i class="fa-brands fa-aws text-3xl text-[#FF9900]"></i>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-gray-300 group-hover:text-accent transition"></i>
+                    </div>
+                    <h4 class="font-bold text-navy-900 mb-1">Intro to Containers</h4>
+                    <p class="text-sm text-gray-500">Amazon Web Services (AWS)</p>
+                </a>
+                
+                <!-- Cert 2 -->
+                <a href="https://github.com/okellodev/okellodev/blob/main/certs/aws-fargate.pdf" target="_blank" class="group block p-6 bg-white border border-gray-200 rounded-xl hover:border-accent hover:shadow-lg transition">
+                    <div class="flex items-start justify-between mb-4">
+                        <i class="fa-brands fa-aws text-3xl text-[#FF9900]"></i>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-gray-300 group-hover:text-accent transition"></i>
+                    </div>
+                    <h4 class="font-bold text-navy-900 mb-1">AWS Fargate - Overview</h4>
+                    <p class="text-sm text-gray-500">Amazon Web Services (AWS)</p>
+                </a>
+
+                <!-- Cert 3 -->
+                <a href="https://github.com/okellodev/okellodev/blob/main/certs/devnet-associate.pdf" target="_blank" class="group block p-6 bg-white border border-gray-200 rounded-xl hover:border-accent hover:shadow-lg transition">
+                    <div class="flex items-start justify-between mb-4">
+                        <i class="fa-solid fa-network-wired text-3xl text-blue-500"></i>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-gray-300 group-hover:text-accent transition"></i>
+                    </div>
+                    <h4 class="font-bold text-navy-900 mb-1">DevNet Associate</h4>
+                    <p class="text-sm text-gray-500">Cisco Networking Academy</p>
+                </a>
+
+                <!-- Cert 4 -->
+                <a href="https://github.com/okellodev/okellodev/blob/main/certs/intro-to-cybersecurity.pdf" target="_blank" class="group block p-6 bg-white border border-gray-200 rounded-xl hover:border-accent hover:shadow-lg transition">
+                    <div class="flex items-start justify-between mb-4">
+                        <i class="fa-solid fa-shield-halved text-3xl text-red-500"></i>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-gray-300 group-hover:text-accent transition"></i>
+                    </div>
+                    <h4 class="font-bold text-navy-900 mb-1">Intro to Cybersecurity</h4>
+                    <p class="text-sm text-gray-500">CompTIA / Security</p>
+                </a>
+
+                <!-- Cert 5 -->
+                <a href="https://github.com/okellodev/okellodev/blob/main/certs/python-essentials-1.pdf" target="_blank" class="group block p-6 bg-white border border-gray-200 rounded-xl hover:border-accent hover:shadow-lg transition">
+                    <div class="flex items-start justify-between mb-4">
+                        <i class="fa-brands fa-python text-3xl text-[#3776AB]"></i>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-gray-300 group-hover:text-accent transition"></i>
+                    </div>
+                    <h4 class="font-bold text-navy-900 mb-1">Python Essentials 1</h4>
+                    <p class="text-sm text-gray-500">Python Institute</p>
+                </a>
+
+                <!-- Cert 6 -->
+                <a href="https://github.com/okellodev/okellodev/blob/main/certs/html-essentials.pdf" target="_blank" class="group block p-6 bg-white border border-gray-200 rounded-xl hover:border-accent hover:shadow-lg transition">
+                    <div class="flex items-start justify-between mb-4">
+                        <i class="fa-brands fa-html5 text-3xl text-[#E34F26]"></i>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-gray-300 group-hover:text-accent transition"></i>
+                    </div>
+                    <h4 class="font-bold text-navy-900 mb-1">HTML Essentials</h4>
+                    <p class="text-sm text-gray-500">Web Development</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- GitHub Stats (Navy Background) -->
+    <section class="bg-navy-900 text-white py-20 px-6 border-b-4 border-accent">
+        <div class="max-w-5xl mx-auto">
+            <div class="flex items-center justify-center gap-4 mb-10">
+                <i class="fa-brands fa-github text-4xl"></i>
+                <h3 class="text-3xl font-bold">GitHub Activity</h3>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row items-center justify-center gap-6">
+                <a href="https://github.com/okellodev" target="_blank" class="block transform hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] transition duration-300">
+                    <img src="https://github-readme-stats.vercel.app/api?username=okellodev&show_icons=true&theme=radical&bg_color=0b1c2c&text_color=f0f4f8&title_color=3b82f6&border_color=334e68" alt="GitHub Stats" class="rounded-xl shadow-2xl border border-navy-500" />
+                </a>
+                <a href="https://github.com/okellodev" target="_blank" class="block transform hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] transition duration-300">
+                    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=okellodev&layout=compact&theme=radical&bg_color=0b1c2c&text_color=f0f4f8&title_color=3b82f6&border_color=334e68" alt="Top Languages" class="rounded-xl shadow-2xl border border-navy-500" />
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer & Socials (Deep Navy) -->
+    <footer id="contact" class="bg-[#07131e] text-gray-400 py-16 px-6 mt-auto">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+            
+            <div class="text-center md:text-left">
+                <div class="text-2xl font-bold text-white mb-2">Okello</div>
+                <div class="text-sm">Building scalable systems.</div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="flex gap-4">
+                <a href="https://mastodon.social/@Logalgorithm" target="_blank" title="Mastodon" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#5c4bdf] hover:text-white transition-all text-xl border border-white/10 hover:border-transparent shadow-lg">
+                    <i class="fa-brands fa-mastodon"></i>
+                </a>
+                
+                <a href="https://bsky.app/profile/okellodev.bsky.social" target="_blank" title="Bluesky" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#0285FF] hover:text-white transition-all text-xl border border-white/10 hover:border-transparent shadow-lg">
+                    <!-- Bluesky Custom SVG Icon -->
+                    <svg viewBox="0 0 320 286" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                        <path d="M69.364 19.146c36.687 27.806 76.148 83.575 90.636 114.439 14.488-30.864 53.949-86.633 90.636-114.439 33.423-25.323 74.065-17.067 69.364 36.37-2.31 26.255-8.239 58.747-11.838 67.854-10.45 26.44-38.835 34.708-66.568 29.837 36.425 7.152 48.069 26.96 35.807 51.574-18.73 37.585-80.463 29.155-117.401-14.773-36.938 43.928-98.671 52.358-117.401 14.773-12.262-24.614-.618-44.422 35.807-51.574-27.733 4.871-56.118-3.397-66.568-29.837-3.599-9.107-9.528-41.599-11.838-67.854-4.701-53.437 35.941-61.693 69.364-36.37z" />
+                    </svg>
+                </a>
+                
+                <a href="https://instagram.com/okellodev" target="_blank" title="Instagram" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#E1306C] hover:text-white transition-all text-xl border border-white/10 hover:border-transparent shadow-lg">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a href="https://wa.me/213551867896" target="_blank" title="WhatsApp" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#25D366] hover:text-white transition-all text-xl border border-white/10 hover:border-transparent shadow-lg">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+            </div>
+            
+        </div>
+        
+        <div class="max-w-5xl mx-auto mt-12 text-center text-sm text-gray-500 border-t border-white/5 pt-8">
+            &copy; 2026 Okello. All rights reserved. 
+        </div>
+    </footer>
+
+</body>
+</html>
