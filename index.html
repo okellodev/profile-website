@@ -204,7 +204,7 @@ nav.scrolled { padding: 14px 48px; }
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  gap: 80px;
+  gap: 40px;
   position: relative;
   z-index: 2;
 }
@@ -231,7 +231,7 @@ nav.scrolled { padding: 14px 48px; }
 .hero-name {
   font-size: clamp(3.5rem, 7vw, 6rem);
   font-weight: 800;
-  line-height: 0.95;
+  line-height: 1.1; display: block; max-width: 600px;
   letter-spacing: -0.03em;
   margin-bottom: 16px;
   opacity: 0;
@@ -436,8 +436,8 @@ nav.scrolled { padding: 14px 48px; }
   white-space: nowrap;
   animation: float-tag 4s ease-in-out infinite;
 }
-.floating-tag-1 { top: -20px; right: 40px; animation-delay: 0s; }
-.floating-tag-2 { bottom: 40px; left: -30px; animation-delay: 1.5s; }
+.floating-tag-1 { top: -10px; right: -20px; z-index: 10; animation-delay: 0s; }
+.floating-tag-2 { bottom: 20px; left: -40px; z-index: 10; animation-delay: 1.5s; }
 .floating-tag-accent { color: var(--accent2); }
 @keyframes float-tag { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
 
@@ -752,7 +752,7 @@ nav.scrolled { padding: 14px 48px; }
 .contact-inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 80px;
+  gap: 40px;
   align-items: start;
 }
 
@@ -963,8 +963,8 @@ footer {
       </div>
       <div class="hero-eyebrow">System Architect &amp; Full-Stack Developer</div>
       <h1 class="hero-name">
-        Building<br>
-        <span class="hero-name-accent">systems</span><br>
+        Building 
+        <span class="hero-name-accent">systems</span> 
         that scale.
       </h1>
       <p class="hero-role">$ okello.init(<span>{ mode: "architect" }</span>)</p>
