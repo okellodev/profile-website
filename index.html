@@ -1215,20 +1215,25 @@ footer {
     </a>
 
     <!-- Project 3 -->
-    <a href="#" target="_blank" class="project-card reveal reveal-delay-2">
+    <div class="project-card reveal reveal-delay-2" style="display:block;">
       <div class="project-header">
         <div class="project-icon" style="background:rgba(0,255,179,0.08);border-color:rgba(0,255,179,0.2);color:var(--accent3)"><i class="fa-solid fa-mobile-screen"></i></div>
-        <i class="fa-solid fa-arrow-up-right-from-square project-link-icon"></i>
+        <a href="./Guerison-App.apk" download="Guerison-App.apk" class="project-link-icon" title="Download Android App"><i class="fa-solid fa-download"></i></a>
       </div>
       <h3 class="project-title">Guerison</h3>
-      <p class="project-desc">A cross-platform mobile application built with React Native and Expo. Configured with a robust environment setup including native modules, authentication flows, and API integration layers.</p>
+      <p class="project-desc">A cross-platform mobile application built with React Native and Expo. Features robust environment setup, secure authentication flows, and seamless API integration layers for real-time data synchronization.</p>
       <div class="project-tags">
         <span class="tag" style="background:rgba(0,255,179,0.06);border-color:rgba(0,255,179,0.2);color:var(--accent3)">React Native</span>
         <span class="tag" style="background:rgba(0,255,179,0.06);border-color:rgba(0,255,179,0.2);color:var(--accent3)">Expo</span>
         <span class="tag">Mobile</span>
-        <span class="tag">Cross-platform</span>
+        <span class="tag">PostgreSQL</span>
       </div>
-    </a>
+      <div style="margin-top:16px;padding:12px;background:rgba(0,255,179,0.05);border-radius:8px;border:1px solid rgba(0,255,179,0.15);">
+        <div style="font-size:0.75rem;font-weight:700;color:var(--accent3);margin-bottom:6px;">App Overview</div>
+        <p style="font-size:0.8rem;color:rgba(232,237,242,0.7);line-height:1.5;">Guerison is a comprehensive mobile solution designed to streamline business operations. It leverages a robust PostgreSQL backend for data management and integrates with Resend for transactional communications. Built with security in mind, featuring session-based authentication and encrypted data flows.</p>
+        <a href="./Guerison-App.apk" download="Guerison-App.apk" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:8px 16px;background:var(--accent3);color:#000;border-radius:6px;font-size:0.8rem;font-weight:700;text-decoration:none;"><i class="fa-brands fa-android"></i> Download Android APK</a>
+      </div>
+    </div>
   </div>
 </section>
 
