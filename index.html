@@ -1,349 +1,1445 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Okello | System Architect</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Icons (FontAwesome for Socials, Devicon for Tech Skills) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Okello — System Architect</title>
+<meta name="description" content="Okello is a System Architect specializing in scalable frontend architecture and backend APIs. Available for freelance and full-time opportunities.">
+<meta property="og:title" content="Okello — System Architect">
+<meta property="og:description" content="Crafting beautiful, scalable, and functional software systems.">
+<meta property="og:type" content="website">
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        navy: {
-                            50: '#f0f4f8',
-                            100: '#d9e2ec',
-                            500: '#334e68',
-                            800: '#102a43',
-                            900: '#0b1c2c', // Deep Navy
-                        },
-                        accent: '#3b82f6', // Bright Blue
-                    }
-                }
-            }
-        }
-    </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+
+<style>
+:root {
+  --bg: #080C10;
+  --bg2: #0D1117;
+  --bg3: #111820;
+  --surface: #161E28;
+  --border: rgba(255,255,255,0.06);
+  --border-hover: rgba(255,255,255,0.14);
+  --text: #E8EDF2;
+  --muted: #6B7685;
+  --accent: #00D4FF;
+  --accent2: #7B61FF;
+  --accent3: #00FFB3;
+  --danger: #FF4D6D;
+  --gold: #FFD166;
+  --font-display: 'Syne', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0.0, 0.0, 0.2, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-display);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* Custom cursor */
+#cursor {
+  width: 10px; height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s var(--ease), height 0.2s var(--ease), background 0.2s;
+  mix-blend-mode: screen;
+}
+#cursor-ring {
+  width: 36px; height: 36px;
+  border: 1px solid rgba(0,212,255,0.4);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.12s var(--ease), width 0.3s var(--ease), height 0.3s var(--ease), border-color 0.2s;
+}
+body:has(a:hover) #cursor, body:has(button:hover) #cursor { width: 18px; height: 18px; }
+body:has(a:hover) #cursor-ring, body:has(button:hover) #cursor-ring { width: 50px; height: 50px; border-color: rgba(0,212,255,0.7); }
+
+/* Noise texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 500;
+  padding: 20px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(8,12,16,0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: padding 0.4s var(--ease);
+}
+nav.scrolled { padding: 14px 48px; }
+.nav-logo {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text);
+  text-decoration: none;
+  display: flex; align-items: center; gap: 10px;
+}
+.nav-logo-dot {
+  width: 6px; height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%,100%{box-shadow:0 0 0 0 rgba(0,212,255,0.6)}
+  50%{box-shadow:0 0 0 6px rgba(0,212,255,0)}
+}
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -4px;
+  width: 0; height: 1px;
+  background: var(--accent);
+  transition: width 0.3s var(--ease);
+}
+.nav-links a:hover { color: var(--text); }
+.nav-links a:hover::after { width: 100%; }
+.nav-cta {
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-decoration: none;
+  border: 1px solid rgba(0,212,255,0.35);
+  padding: 8px 20px;
+  border-radius: 4px;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.nav-cta:hover { background: rgba(0,212,255,0.1); border-color: var(--accent); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 120px 48px 80px;
+}
+
+/* Grid background */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+}
+
+/* Gradient orbs */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+}
+.orb-1 {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(0,212,255,0.12), transparent 70%);
+  top: -200px; right: -100px;
+  animation: float1 8s ease-in-out infinite;
+}
+.orb-2 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(123,97,255,0.1), transparent 70%);
+  bottom: -150px; left: -100px;
+  animation: float2 10s ease-in-out infinite;
+}
+@keyframes float1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-30px,30px)} }
+@keyframes float2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(30px,-20px)} }
+
+.hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 80px;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  animation: fadeUp 0.8s var(--ease) 0.2s forwards;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 30px; height: 1px;
+  background: var(--accent);
+}
+
+.hero-name {
+  font-size: clamp(3.5rem, 7vw, 6rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+  opacity: 0;
+  animation: fadeUp 0.8s var(--ease) 0.35s forwards;
+}
+.hero-name-accent {
+  display: block;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-role {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp 0.8s var(--ease) 0.45s forwards;
+}
+.hero-role span { color: var(--accent3); }
+
+.hero-bio {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: rgba(232,237,242,0.7);
+  max-width: 480px;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeUp 0.8s var(--ease) 0.55s forwards;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.8s var(--ease) 0.65s forwards;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: #000;
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 14px 28px;
+  border-radius: 4px;
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(0,212,255,0.3);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 14px 28px;
+  border-radius: 4px;
+  border: 1px solid var(--border-hover);
+  transition: border-color 0.2s, background 0.2s;
+}
+.btn-ghost:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.2); }
+
+.availability-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0,255,179,0.07);
+  border: 1px solid rgba(0,255,179,0.2);
+  color: var(--accent3);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 7px 14px;
+  border-radius: 100px;
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp 0.8s var(--ease) 0.1s forwards;
+  width: fit-content;
+}
+.availability-badge .dot {
+  width: 6px; height: 6px;
+  background: var(--accent3);
+  border-radius: 50%;
+  animation: pulse-green 2s ease-in-out infinite;
+}
+@keyframes pulse-green {
+  0%,100%{box-shadow:0 0 0 0 rgba(0,255,179,0.6)}
+  50%{box-shadow:0 0 0 5px rgba(0,255,179,0)}
+}
+
+/* HERO RIGHT - Profile card */
+.hero-card {
+  position: relative;
+  opacity: 0;
+  animation: fadeIn 1s var(--ease) 0.5s forwards;
+}
+.hero-card-inner {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s var(--ease);
+}
+.hero-card-inner:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-4px);
+}
+.hero-card-inner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.5;
+}
+
+.profile-img-wrap {
+  width: 88px; height: 88px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid var(--border-hover);
+  margin-bottom: 20px;
+  position: relative;
+}
+.profile-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+.profile-img-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: 6px; right: 6px;
+  width: 10px; height: 10px;
+  background: var(--accent3);
+  border-radius: 50%;
+  border: 2px solid var(--surface);
+}
+
+.card-name { font-size: 1.3rem; font-weight: 700; margin-bottom: 4px; }
+.card-title { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); margin-bottom: 24px; }
+
+.card-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.stat-item {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+}
+.stat-val { font-size: 1.4rem; font-weight: 800; color: var(--accent); line-height: 1; margin-bottom: 4px; }
+.stat-label { font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+
+.card-socials {
+  display: flex;
+  gap: 10px;
+}
+.social-btn {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+}
+.social-btn:hover { background: rgba(0,212,255,0.1); color: var(--accent); border-color: rgba(0,212,255,0.3); transform: translateY(-2px); }
+
+/* Floating tags */
+.floating-tag {
+  position: absolute;
+  background: var(--surface);
+  border: 1px solid var(--border-hover);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text);
+  white-space: nowrap;
+  animation: float-tag 4s ease-in-out infinite;
+}
+.floating-tag-1 { top: -20px; right: 40px; animation-delay: 0s; }
+.floating-tag-2 { bottom: 40px; left: -30px; animation-delay: 1.5s; }
+.floating-tag-accent { color: var(--accent2); }
+@keyframes float-tag { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+/* SCROLL INDICATOR */
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px; left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  animation: fadeIn 1s var(--ease) 1.5s both;
+  z-index: 2;
+}
+.scroll-line {
+  width: 1px; height: 50px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  animation: scroll-grow 2s ease-in-out infinite;
+}
+@keyframes scroll-grow { 0%{transform:scaleY(0);transform-origin:top} 50%{transform:scaleY(1);transform-origin:top} 51%{transform:scaleY(1);transform-origin:bottom} 100%{transform:scaleY(0);transform-origin:bottom} }
+
+/* SECTION WRAPPER */
+.section {
+  padding: 120px 48px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.section-full {
+  padding: 120px 48px;
+}
+.section-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--accent);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.section-label::before { content: ''; width: 20px; height: 1px; background: var(--accent); }
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin-bottom: 60px;
+}
+.section-title em {
+  font-style: normal;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* SKILLS */
+.skills-bg {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+.skill-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px 16px;
+  text-align: center;
+  transition: border-color 0.3s, transform 0.3s var(--ease), background 0.3s;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+}
+.skill-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,212,255,0.05), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.skill-card:hover { border-color: var(--border-hover); transform: translateY(-4px); }
+.skill-card:hover::before { opacity: 1; }
+.skill-card i { font-size: 2rem; margin-bottom: 10px; display: block; }
+.skill-name { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); }
+
+/* PROJECTS */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  text-decoration: none;
+  color: var(--text);
+  display: block;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s var(--ease);
+  group: true;
+}
+.project-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,212,255,0.04), rgba(123,97,255,0.04));
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.project-card:hover { border-color: rgba(0,212,255,0.25); transform: translateY(-5px); }
+.project-card:hover::after { opacity: 1; }
+
+.project-card.featured {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.project-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.project-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  background: rgba(0,212,255,0.08);
+  border: 1px solid rgba(0,212,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: var(--accent);
+}
+.project-link-icon { color: var(--muted); font-size: 0.85rem; transition: color 0.2s, transform 0.2s; }
+.project-card:hover .project-link-icon { color: var(--accent); transform: translate(2px,-2px); }
+
+.project-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+.project-desc { font-size: 0.88rem; line-height: 1.7; color: rgba(232,237,242,0.6); margin-bottom: 20px; }
+
+.project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  padding: 5px 10px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.tag-accent { background: rgba(0,212,255,0.08); border-color: rgba(0,212,255,0.2); color: var(--accent); }
+
+.project-visual {
+  height: 180px;
+  border-radius: 12px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.project-visual-inner {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: rgba(0,212,255,0.4);
+  line-height: 1.8;
+  padding: 16px;
+  width: 100%;
+}
+
+/* CERTS */
+.certs-bg {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.cert-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  text-decoration: none;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: border-color 0.3s, transform 0.3s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+.cert-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px;
+  height: 0;
+  background: var(--accent);
+  transition: height 0.4s var(--ease);
+}
+.cert-card:hover { border-color: var(--border-hover); transform: translateY(-3px); }
+.cert-card:hover::before { height: 100%; }
+
+.cert-issuer-icon { font-size: 1.6rem; }
+.cert-name { font-size: 0.9rem; font-weight: 600; line-height: 1.3; }
+.cert-issuer { font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); }
+.cert-arrow { margin-top: auto; color: var(--muted); font-size: 0.75rem; display: flex; align-items: center; gap: 6px; transition: color 0.2s, gap 0.2s; }
+.cert-card:hover .cert-arrow { color: var(--accent); gap: 10px; }
+
+/* GITHUB STATS */
+.github-section { background: var(--bg); }
+
+.github-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+.github-img-card {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: transform 0.3s var(--ease), border-color 0.3s;
+}
+.github-img-card:hover { transform: translateY(-5px); border-color: rgba(0,212,255,0.3); }
+.github-img-card img { display: block; }
+
+/* ABOUT / PHILOSOPHY */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+.about-text p {
+  font-size: 1rem;
+  line-height: 1.85;
+  color: rgba(232,237,242,0.7);
+  margin-bottom: 20px;
+}
+.about-text strong { color: var(--text); font-weight: 600; }
+
+.philosophy-items { display: flex; flex-direction: column; gap: 16px; }
+.philosophy-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  transition: border-color 0.3s;
+}
+.philosophy-item:hover { border-color: var(--border-hover); }
+.philosophy-icon {
+  width: 38px; height: 38px;
+  border-radius: 8px;
+  background: rgba(0,212,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+.philosophy-text h4 { font-size: 0.88rem; font-weight: 600; margin-bottom: 5px; }
+.philosophy-text p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+/* CONTACT */
+.contact-bg {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+}
+
+.contact-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.contact-info p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: rgba(232,237,242,0.6);
+  margin-bottom: 32px;
+}
+
+.contact-links { display: flex; flex-direction: column; gap: 12px; }
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: var(--text);
+  font-size: 0.88rem;
+  padding: 14px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: border-color 0.2s, transform 0.2s, background 0.2s;
+}
+.contact-link:hover { border-color: rgba(0,212,255,0.3); transform: translateX(4px); background: rgba(0,212,255,0.04); }
+.contact-link-icon {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+.contact-link-text { display: flex; flex-direction: column; }
+.contact-link-label { font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+.contact-link-value { font-size: 0.88rem; font-weight: 500; }
+
+/* Contact form */
+.contact-form { display: flex; flex-direction: column; gap: 14px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-label { font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+.form-input, .form-textarea {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+}
+.form-input:focus, .form-textarea:focus {
+  border-color: rgba(0,212,255,0.4);
+  box-shadow: 0 0 0 3px rgba(0,212,255,0.06);
+}
+.form-textarea { resize: vertical; min-height: 120px; }
+::placeholder { color: var(--muted); }
+
+.btn-submit {
+  background: var(--accent);
+  color: #000;
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  border-radius: 6px;
+  border: none;
+  cursor: none;
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+  width: 100%;
+}
+.btn-submit:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,212,255,0.25); }
+
+/* FOOTER */
+footer {
+  padding: 32px 48px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer-logo { font-weight: 700; font-size: 0.9rem; color: var(--muted); }
+.footer-copy { font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); }
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* MARQUEE */
+.marquee-section {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+  padding: 18px 0;
+  overflow: hidden;
+}
+.marquee-track {
+  display: flex;
+  gap: 48px;
+  animation: marquee 25s linear infinite;
+  width: max-content;
+}
+.marquee-item {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.marquee-item::after { content: '·'; color: var(--accent); }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* Mobile hamburger (hidden desktop) */
+.hamburger { display: none; }
+
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: none; background: none; border: none; padding: 4px; }
+  .hamburger span { width: 22px; height: 1.5px; background: var(--text); display: block; }
+  .hero { padding: 100px 24px 60px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero-card { display: none; }
+  .section { padding: 80px 24px; }
+  .section-full { padding: 80px 24px; }
+  .skills-grid { grid-template-columns: repeat(3, 1fr); }
+  .projects-grid { grid-template-columns: 1fr; }
+  .project-card.featured { grid-column: auto; display: block; }
+  .certs-grid { grid-template-columns: 1fr 1fr; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+  footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px; }
+}
+
+@media (max-width: 600px) {
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  .certs-grid { grid-template-columns: 1fr; }
+}
+</style>
 </head>
-<body class="bg-navy-50 text-gray-800 antialiased flex flex-col min-h-screen">
+<body>
 
-    <!-- Hero Section (Dark Navy) -->
-    <section class="bg-navy-900 text-white py-24 px-6">
-        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12">
-            <!-- Profile Picture -->
-            <div class="flex-shrink-0 relative">
-                <div class="w-48 h-48 rounded-full overflow-hidden border-4 border-accent shadow-2xl">
-                    <!-- Using GitHub Avatar as a highly relevant placeholder -->
-                    <img src="https://github.com/okellodev.png" alt="Okello Profile Picture" class="w-full h-full object-cover">
-                </div>
-                <div class="absolute bottom-2 right-2 bg-accent w-8 h-8 rounded-full border-2 border-navy-900 flex items-center justify-center">
-                    <i class="fa-solid fa-check text-white text-sm"></i>
-                </div>
-            </div>
-            
-            <!-- Hero Text -->
-            <div class="text-center md:text-left">
-                <h1 class="text-5xl md:text-6xl font-bold tracking-tight mb-4">Okello</h1>
-                <h2 class="text-2xl md:text-3xl font-medium text-blue-300 mb-6">System Architect</h2>
-                <p class="text-lg text-gray-300 max-w-2xl leading-relaxed mb-8">
-                    I am a passionate developer crafting beautiful, scalable, and functional software systems. I specialize in both frontend architecture and backend APIs, bridging the gap between elegant design and robust system performance.
-                </p>
-                <div class="flex flex-wrap justify-center md:justify-start gap-4">
-                    <a href="#contact" class="px-8 py-3 bg-accent hover:bg-blue-600 text-white font-semibold rounded-lg transition shadow-lg shadow-blue-500/30">
-                        Get In Touch
-                    </a>
-                    <a href="https://github.com/okellodev" target="_blank" class="px-8 py-3 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg transition backdrop-blur-sm border border-white/10">
-                        <i class="fa-brands fa-github mr-2"></i> View GitHub
-                    </a>
-                </div>
-            </div>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <span class="nav-logo-dot"></span>
+    OKELLO
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Stack</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Hire me</a>
+  <button class="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div class="hero-inner">
+    <!-- LEFT -->
+    <div>
+      <div class="availability-badge">
+        <span class="dot"></span>
+        Available for opportunities
+      </div>
+      <div class="hero-eyebrow">System Architect &amp; Full-Stack Developer</div>
+      <h1 class="hero-name">
+        Building<br>
+        <span class="hero-name-accent">systems</span><br>
+        that scale.
+      </h1>
+      <p class="hero-role">$ okello.init(<span>{ mode: "architect" }</span>)</p>
+      <p class="hero-bio">
+        I design and build scalable software systems — bridging elegant frontend experiences with robust backend infrastructure. Specializing in cloud-native architecture, DevOps pipelines, and full-stack development.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">
+          <i class="fa-solid fa-paper-plane"></i>
+          Get in touch
+        </a>
+        <a href="https://github.com/okellodev" target="_blank" class="btn-ghost">
+          <i class="fa-brands fa-github"></i>
+          GitHub
+        </a>
+        <a href="#" class="btn-ghost">
+          <i class="fa-solid fa-download"></i>
+          Resume
+        </a>
+      </div>
+    </div>
+
+    <!-- RIGHT — Profile Card -->
+    <div class="hero-card">
+      <div class="floating-tag floating-tag-1"><i class="fa-brands fa-docker" style="color:#2496ed;margin-right:6px"></i> Docker · AWS · DevOps</div>
+      <div class="floating-tag floating-tag-2"><span class="floating-tag-accent">function</span> buildSystem() { }</div>
+      <div class="hero-card-inner">
+        <div class="profile-img-wrap">
+          <img src="https://github.com/okellodev.png" alt="Okello">
         </div>
-    </section>
-
-    <!-- Education & Hobbies (White Background) -->
-    <section class="bg-white py-20 px-6 border-b border-gray-200">
-        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-16">
-            <!-- Education -->
-            <div>
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-accent">
-                        <i class="fa-solid fa-graduation-cap text-xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-navy-900">Education & Journey</h3>
-                </div>
-                <p class="text-gray-600 leading-relaxed mb-4">
-                    My educational journey is a continuous process of diving deeper into advanced software engineering practices. I believe in a hands-on approach, learning through building real-world applications and attaining industry-recognized certifications.
-                </p>
-                <p class="text-gray-600 leading-relaxed">
-                    Rather than sticking to a single path, I actively explore new fields in computer science, adapting to modern tech stacks and architectural paradigms to remain at the cutting edge of the industry.
-                </p>
-            </div>
-
-            <!-- Hobbies -->
-            <div>
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-accent">
-                        <i class="fa-solid fa-gamepad text-xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-navy-900">Beyond the Code</h3>
-                </div>
-                <p class="text-gray-600 leading-relaxed mb-4">
-                    When I'm not architecting enterprise systems, I thoroughly enjoy <strong class="text-navy-900">"vibe coding"</strong>. This means getting into a creative flow state to build passion projects and experiment with fresh ideas without the pressure of deadlines.
-                </p>
-                <p class="text-gray-600 leading-relaxed">
-                    It helps me keep the art of software development fun, allowing me to play with new UI libraries, test unconventional database structures, and remember why I fell in love with coding in the first place.
-                </p>
-            </div>
+        <div class="card-name">Okello</div>
+        <div class="card-title">// System Architect · Full-Stack Dev</div>
+        <div class="card-stats">
+          <div class="stat-item">
+            <div class="stat-val">10+</div>
+            <div class="stat-label">Technologies</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-val">6</div>
+            <div class="stat-label">Certifications</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-val">3+</div>
+            <div class="stat-label">Live Projects</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-val">∞</div>
+            <div class="stat-label">Coffee consumed</div>
+          </div>
         </div>
-    </section>
-
-    <!-- Skills & Tech Stack (Light Navy Mix) -->
-    <section class="bg-navy-50 py-20 px-6">
-        <div class="max-w-5xl mx-auto">
-            <h3 class="text-3xl font-bold text-navy-900 text-center mb-12">Technical Arsenal</h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 text-center">
-                <!-- Skill Items -->
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100">
-                    <i class="devicon-javascript-plain colored text-4xl mb-3"></i>
-                    <div class="font-medium text-gray-700">JavaScript</div>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100">
-                    <i class="devicon-python-plain colored text-4xl mb-3"></i>
-                    <div class="font-medium text-gray-700">Python</div>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100">
-                    <i class="devicon-react-original colored text-4xl mb-3"></i>
-                    <div class="font-medium text-gray-700">React</div>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100">
-                    <i class="devicon-nodejs-plain colored text-4xl mb-3"></i>
-                    <div class="font-medium text-gray-700">Node.js</div>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100">
-                    <i class="devicon-docker-plain colored text-4xl mb-3"></i>
-                    <div class="font-medium text-gray-700">Docker</div>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100">
-                    <i class="devicon-amazonwebservices-original colored text-4xl mb-3"></i>
-                    <div class="font-medium text-gray-700">AWS</div>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100">
-                    <i class="devicon-html5-plain colored text-4xl mb-3"></i>
-                    <div class="font-medium text-gray-700">HTML5</div>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100">
-                    <i class="devicon-css3-plain colored text-4xl mb-3"></i>
-                    <div class="font-medium text-gray-700">CSS3</div>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100">
-                    <i class="devicon-git-plain colored text-4xl mb-3"></i>
-                    <div class="font-medium text-gray-700">Git</div>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100">
-                    <i class="devicon-linux-plain text-gray-800 text-4xl mb-3"></i>
-                    <div class="font-medium text-gray-700">Linux</div>
-                </div>
-            </div>
+        <div class="card-socials">
+          <a href="https://github.com/okellodev" target="_blank" class="social-btn"><i class="fa-brands fa-github"></i></a>
+          <a href="https://mastodon.social/@Logalgorithm" target="_blank" class="social-btn"><i class="fa-brands fa-mastodon"></i></a>
+          <a href="https://bsky.app/profile/okellodev.bsky.social" target="_blank" class="social-btn">
+            <svg viewBox="0 0 320 286" width="14" height="14" fill="currentColor"><path d="M69.364 19.146c36.687 27.806 76.148 83.575 90.636 114.439 14.488-30.864 53.949-86.633 90.636-114.439 33.423-25.323 74.065-17.067 69.364 36.37-2.31 26.255-8.239 58.747-11.838 67.854-10.45 26.44-38.835 34.708-66.568 29.837 36.425 7.152 48.069 26.96 35.807 51.574-18.73 37.585-80.463 29.155-117.401-14.773-36.938 43.928-98.671 52.358-117.401 14.773-12.262-24.614-.618-44.422 35.807-51.574-27.733 4.871-56.118-3.397-66.568-29.837-3.599-9.107-9.528-41.599-11.838-67.854-4.701-53.437 35.941-61.693 69.364-36.37z"/></svg>
+          </a>
+          <a href="https://instagram.com/okellodev" target="_blank" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://wa.me/213551867896" target="_blank" class="social-btn"><i class="fa-brands fa-whatsapp"></i></a>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
 
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
 
-    <!-- Featured Projects (Light Navy Mix or White) -->
-    <section class="bg-navy-50 py-20 px-6 border-t border-gray-200">
-        <div class="max-w-5xl mx-auto">
-            <h3 class="text-3xl font-bold text-navy-900 text-center mb-4">Featured Projects</h3>
-            <p class="text-center text-gray-500 mb-12">Public repositories and system architectures I am collaborating on.</p>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Project 1 -->
-                <a href="https://github.com/okellodev/Stretch_Therapy" target="_blank" class="group block p-6 bg-white border border-gray-200 rounded-xl hover:border-accent hover:shadow-lg transition">
-                    <div class="flex items-start justify-between mb-4">
-                        <div class="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center text-accent">
-                            <i class="fa-solid fa-heart-pulse text-2xl"></i>
-                        </div>
-                        <i class="fa-brands fa-github text-gray-300 group-hover:text-accent transition text-xl"></i>
-                    </div>
-                    <h4 class="font-bold text-navy-900 mb-2">Stretch Therapy</h4>
-                    <p class="text-sm text-gray-600 mb-4 line-clamp-2">A comprehensive stretch therapy web project with integrated booking and backend services.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="text-[10px] px-2 py-1 bg-gray-100 text-gray-600 rounded uppercase font-semibold">Python</span>
-                        <span class="text-[10px] px-2 py-1 bg-gray-100 text-gray-600 rounded uppercase font-semibold">JS</span>
-                    </div>
-                </a>
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track" id="marquee">
+    <span class="marquee-item">System Architecture</span>
+    <span class="marquee-item">Cloud Infrastructure</span>
+    <span class="marquee-item">API Design</span>
+    <span class="marquee-item">Frontend Engineering</span>
+    <span class="marquee-item">DevOps</span>
+    <span class="marquee-item">React Native</span>
+    <span class="marquee-item">Python</span>
+    <span class="marquee-item">Docker & Kubernetes</span>
+    <span class="marquee-item">AWS Services</span>
+    <span class="marquee-item">Vibe Coding</span>
+    <span class="marquee-item">System Architecture</span>
+    <span class="marquee-item">Cloud Infrastructure</span>
+    <span class="marquee-item">API Design</span>
+    <span class="marquee-item">Frontend Engineering</span>
+    <span class="marquee-item">DevOps</span>
+    <span class="marquee-item">React Native</span>
+    <span class="marquee-item">Python</span>
+    <span class="marquee-item">Docker & Kubernetes</span>
+    <span class="marquee-item">AWS Services</span>
+    <span class="marquee-item">Vibe Coding</span>
+  </div>
+</div>
 
-                <!-- Project 2 -->
-                <a href="https://github.com/okellodev/tra-koyeb" target="_blank" class="group block p-6 bg-white border border-gray-200 rounded-xl hover:border-accent hover:shadow-lg transition">
-                    <div class="flex items-start justify-between mb-4">
-                        <div class="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center text-accent">
-                            <i class="fa-solid fa-server text-2xl"></i>
-                        </div>
-                        <i class="fa-brands fa-github text-gray-300 group-hover:text-accent transition text-xl"></i>
-                    </div>
-                    <h4 class="font-bold text-navy-900 mb-2">tra-koyeb</h4>
-                    <p class="text-sm text-gray-600 mb-4 line-clamp-2">A deployment environment repository containing robust configurations and automated services.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="text-[10px] px-2 py-1 bg-gray-100 text-gray-600 rounded uppercase font-semibold">DevOps</span>
-                        <span class="text-[10px] px-2 py-1 bg-gray-100 text-gray-600 rounded uppercase font-semibold">Docker</span>
-                    </div>
-                </a>
-
-                <!-- Project 3 -->
-                <a href="https://github.com/okellodev/Guerison" target="_blank" class="group block p-6 bg-white border border-gray-200 rounded-xl hover:border-accent hover:shadow-lg transition">
-                    <div class="flex items-start justify-between mb-4">
-                        <div class="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center text-accent">
-                            <i class="fa-solid fa-mobile-screen text-2xl"></i>
-                        </div>
-                        <i class="fa-brands fa-github text-gray-300 group-hover:text-accent transition text-xl"></i>
-                    </div>
-                    <h4 class="font-bold text-navy-900 mb-2">Guerison</h4>
-                    <p class="text-sm text-gray-600 mb-4 line-clamp-2">A modern frontend/expo application setup featuring core environment configurations.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="text-[10px] px-2 py-1 bg-gray-100 text-gray-600 rounded uppercase font-semibold">React Native</span>
-                        <span class="text-[10px] px-2 py-1 bg-gray-100 text-gray-600 rounded uppercase font-semibold">Expo</span>
-                    </div>
-                </a>
-            </div>
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="section-label">About me</div>
+  <h2 class="section-title reveal">The architect <em>behind the code</em></h2>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>I'm a <strong>system architect and full-stack developer</strong> with a relentless drive to build software that is both technically sound and genuinely delightful to use. My work spans the full spectrum — from crafting pixel-perfect UIs to designing distributed backend systems that scale.</p>
+      <p>My educational journey is <strong>hands-on and continuous</strong>. I believe the best learning comes from shipping real projects, earning industry certifications, and diving deep into new domains. I hold credentials in AWS, Cisco DevNet, cybersecurity, and Python — with more in progress.</p>
+      <p>Outside of professional work, I embrace <strong>"vibe coding"</strong> — entering a creative flow state to experiment with new ideas, play with UI libraries, and remember why I fell in love with building software in the first place.</p>
+    </div>
+    <div class="philosophy-items reveal reveal-delay-2">
+      <div class="philosophy-item">
+        <div class="philosophy-icon"><i class="fa-solid fa-layer-group"></i></div>
+        <div class="philosophy-text">
+          <h4>Architecture first</h4>
+          <p>I design systems before writing a single line. Good architecture makes everything else easier.</p>
         </div>
-    </section>
-
-    <!-- Certifications (White Background) -->
-    <section class="bg-white py-20 px-6 border-y border-gray-200">
-        <div class="max-w-5xl mx-auto">
-            <h3 class="text-3xl font-bold text-navy-900 text-center mb-4">Certifications</h3>
-            <p class="text-center text-gray-500 mb-12">Verified credentials validating my expertise.</p>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Cert 1 -->
-                <a href="https://github.com/okellodev/okellodev/blob/main/certs/aws-cert.pdf" target="_blank" class="group block p-6 bg-white border border-gray-200 rounded-xl hover:border-accent hover:shadow-lg transition">
-                    <div class="flex items-start justify-between mb-4">
-                        <i class="fa-brands fa-aws text-3xl text-[#FF9900]"></i>
-                        <i class="fa-solid fa-arrow-up-right-from-square text-gray-300 group-hover:text-accent transition"></i>
-                    </div>
-                    <h4 class="font-bold text-navy-900 mb-1">Intro to Containers</h4>
-                    <p class="text-sm text-gray-500">Amazon Web Services (AWS)</p>
-                </a>
-                
-                <!-- Cert 2 -->
-                <a href="https://github.com/okellodev/okellodev/blob/main/certs/aws-fargate.pdf" target="_blank" class="group block p-6 bg-white border border-gray-200 rounded-xl hover:border-accent hover:shadow-lg transition">
-                    <div class="flex items-start justify-between mb-4">
-                        <i class="fa-brands fa-aws text-3xl text-[#FF9900]"></i>
-                        <i class="fa-solid fa-arrow-up-right-from-square text-gray-300 group-hover:text-accent transition"></i>
-                    </div>
-                    <h4 class="font-bold text-navy-900 mb-1">AWS Fargate - Overview</h4>
-                    <p class="text-sm text-gray-500">Amazon Web Services (AWS)</p>
-                </a>
-
-                <!-- Cert 3 -->
-                <a href="https://github.com/okellodev/okellodev/blob/main/certs/devnet-associate.pdf" target="_blank" class="group block p-6 bg-white border border-gray-200 rounded-xl hover:border-accent hover:shadow-lg transition">
-                    <div class="flex items-start justify-between mb-4">
-                        <i class="fa-solid fa-network-wired text-3xl text-blue-500"></i>
-                        <i class="fa-solid fa-arrow-up-right-from-square text-gray-300 group-hover:text-accent transition"></i>
-                    </div>
-                    <h4 class="font-bold text-navy-900 mb-1">DevNet Associate</h4>
-                    <p class="text-sm text-gray-500">Cisco Networking Academy</p>
-                </a>
-
-                <!-- Cert 4 -->
-                <a href="https://github.com/okellodev/okellodev/blob/main/certs/intro-to-cybersecurity.pdf" target="_blank" class="group block p-6 bg-white border border-gray-200 rounded-xl hover:border-accent hover:shadow-lg transition">
-                    <div class="flex items-start justify-between mb-4">
-                        <i class="fa-solid fa-shield-halved text-3xl text-red-500"></i>
-                        <i class="fa-solid fa-arrow-up-right-from-square text-gray-300 group-hover:text-accent transition"></i>
-                    </div>
-                    <h4 class="font-bold text-navy-900 mb-1">Intro to Cybersecurity</h4>
-                    <p class="text-sm text-gray-500">CompTIA / Security</p>
-                </a>
-
-                <!-- Cert 5 -->
-                <a href="https://github.com/okellodev/okellodev/blob/main/certs/python-essentials-1.pdf" target="_blank" class="group block p-6 bg-white border border-gray-200 rounded-xl hover:border-accent hover:shadow-lg transition">
-                    <div class="flex items-start justify-between mb-4">
-                        <i class="fa-brands fa-python text-3xl text-[#3776AB]"></i>
-                        <i class="fa-solid fa-arrow-up-right-from-square text-gray-300 group-hover:text-accent transition"></i>
-                    </div>
-                    <h4 class="font-bold text-navy-900 mb-1">Python Essentials 1</h4>
-                    <p class="text-sm text-gray-500">Python Institute</p>
-                </a>
-
-                <!-- Cert 6 -->
-                <a href="https://github.com/okellodev/okellodev/blob/main/certs/html-essentials.pdf" target="_blank" class="group block p-6 bg-white border border-gray-200 rounded-xl hover:border-accent hover:shadow-lg transition">
-                    <div class="flex items-start justify-between mb-4">
-                        <i class="fa-brands fa-html5 text-3xl text-[#E34F26]"></i>
-                        <i class="fa-solid fa-arrow-up-right-from-square text-gray-300 group-hover:text-accent transition"></i>
-                    </div>
-                    <h4 class="font-bold text-navy-900 mb-1">HTML Essentials</h4>
-                    <p class="text-sm text-gray-500">Web Development</p>
-                </a>
-            </div>
+      </div>
+      <div class="philosophy-item">
+        <div class="philosophy-icon"><i class="fa-solid fa-bolt"></i></div>
+        <div class="philosophy-text">
+          <h4>Performance obsessed</h4>
+          <p>Every millisecond matters. I optimize at every layer from database queries to render pipelines.</p>
         </div>
-    </section>
-
-    <!-- GitHub Stats (Navy Background) -->
-    <section class="bg-navy-900 text-white py-20 px-6 border-b-4 border-accent">
-        <div class="max-w-5xl mx-auto">
-            <div class="flex items-center justify-center gap-4 mb-10">
-                <i class="fa-brands fa-github text-4xl"></i>
-                <h3 class="text-3xl font-bold">GitHub Activity</h3>
-            </div>
-            
-            <div class="flex flex-col lg:flex-row items-center justify-center gap-6">
-                <a href="https://github.com/okellodev" target="_blank" class="block transform hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] transition duration-300">
-                    <img src="https://github-readme-stats.vercel.app/api?username=okellodev&show_icons=true&theme=radical&bg_color=0b1c2c&text_color=f0f4f8&title_color=3b82f6&border_color=334e68" alt="GitHub Stats" class="rounded-xl shadow-2xl border border-navy-500" />
-                </a>
-                <a href="https://github.com/okellodev" target="_blank" class="block transform hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] transition duration-300">
-                    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=okellodev&layout=compact&theme=radical&bg_color=0b1c2c&text_color=f0f4f8&title_color=3b82f6&border_color=334e68" alt="Top Languages" class="rounded-xl shadow-2xl border border-navy-500" />
-                </a>
-            </div>
+      </div>
+      <div class="philosophy-item">
+        <div class="philosophy-icon"><i class="fa-solid fa-seedling"></i></div>
+        <div class="philosophy-text">
+          <h4>Continuous learner</h4>
+          <p>Technology moves fast. I stay at the cutting edge through certifications, projects, and curiosity.</p>
         </div>
-    </section>
-
-    <!-- Footer & Socials (Deep Navy) -->
-    <footer id="contact" class="bg-[#07131e] text-gray-400 py-16 px-6 mt-auto">
-        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
-            
-            <div class="text-center md:text-left">
-                <div class="text-2xl font-bold text-white mb-2">Okello</div>
-                <div class="text-sm">Building scalable systems.</div>
-            </div>
-
-            <!-- Social Links -->
-            <div class="flex gap-4">
-                <a href="https://mastodon.social/@Logalgorithm" target="_blank" title="Mastodon" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#5c4bdf] hover:text-white transition-all text-xl border border-white/10 hover:border-transparent shadow-lg">
-                    <i class="fa-brands fa-mastodon"></i>
-                </a>
-                
-                <a href="https://bsky.app/profile/okellodev.bsky.social" target="_blank" title="Bluesky" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#0285FF] hover:text-white transition-all text-xl border border-white/10 hover:border-transparent shadow-lg">
-                    <!-- Bluesky Custom SVG Icon -->
-                    <svg viewBox="0 0 320 286" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
-                        <path d="M69.364 19.146c36.687 27.806 76.148 83.575 90.636 114.439 14.488-30.864 53.949-86.633 90.636-114.439 33.423-25.323 74.065-17.067 69.364 36.37-2.31 26.255-8.239 58.747-11.838 67.854-10.45 26.44-38.835 34.708-66.568 29.837 36.425 7.152 48.069 26.96 35.807 51.574-18.73 37.585-80.463 29.155-117.401-14.773-36.938 43.928-98.671 52.358-117.401 14.773-12.262-24.614-.618-44.422 35.807-51.574-27.733 4.871-56.118-3.397-66.568-29.837-3.599-9.107-9.528-41.599-11.838-67.854-4.701-53.437 35.941-61.693 69.364-36.37z" />
-                    </svg>
-                </a>
-                
-                <a href="https://instagram.com/okellodev" target="_blank" title="Instagram" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#E1306C] hover:text-white transition-all text-xl border border-white/10 hover:border-transparent shadow-lg">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-
-                <a href="https://wa.me/213551867896" target="_blank" title="WhatsApp" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#25D366] hover:text-white transition-all text-xl border border-white/10 hover:border-transparent shadow-lg">
-                    <i class="fa-brands fa-whatsapp"></i>
-                </a>
-            </div>
-            
+      </div>
+      <div class="philosophy-item">
+        <div class="philosophy-icon"><i class="fa-solid fa-code-branch"></i></div>
+        <div class="philosophy-text">
+          <h4>Open source advocate</h4>
+          <p>I build in public and believe in sharing knowledge. Most of my work lives on GitHub.</p>
         </div>
-        
-        <div class="max-w-5xl mx-auto mt-12 text-center text-sm text-gray-500 border-t border-white/5 pt-8">
-            &copy; 2026 Okello. All rights reserved. 
-        </div>
-    </footer>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- SKILLS -->
+<div class="skills-bg section-full" id="skills">
+  <div class="section-inner">
+    <div class="section-label">Technical stack</div>
+    <h2 class="section-title reveal">The tools I <em>trust</em></h2>
+    <div class="skills-grid">
+      <div class="skill-card reveal reveal-delay-1">
+        <i class="devicon-javascript-plain colored"></i>
+        <div class="skill-name">JavaScript</div>
+      </div>
+      <div class="skill-card reveal reveal-delay-1">
+        <i class="devicon-python-plain colored"></i>
+        <div class="skill-name">Python</div>
+      </div>
+      <div class="skill-card reveal reveal-delay-2">
+        <i class="devicon-react-original colored"></i>
+        <div class="skill-name">React</div>
+      </div>
+      <div class="skill-card reveal reveal-delay-2">
+        <i class="devicon-nodejs-plain colored"></i>
+        <div class="skill-name">Node.js</div>
+      </div>
+      <div class="skill-card reveal reveal-delay-3">
+        <i class="devicon-docker-plain colored"></i>
+        <div class="skill-name">Docker</div>
+      </div>
+      <div class="skill-card reveal reveal-delay-3">
+        <i class="devicon-amazonwebservices-original colored"></i>
+        <div class="skill-name">AWS</div>
+      </div>
+      <div class="skill-card reveal reveal-delay-4">
+        <i class="devicon-html5-plain colored"></i>
+        <div class="skill-name">HTML5</div>
+      </div>
+      <div class="skill-card reveal reveal-delay-4">
+        <i class="devicon-css3-plain colored"></i>
+        <div class="skill-name">CSS3</div>
+      </div>
+      <div class="skill-card reveal">
+        <i class="devicon-git-plain colored"></i>
+        <div class="skill-name">Git</div>
+      </div>
+      <div class="skill-card reveal reveal-delay-1">
+        <i class="devicon-linux-plain" style="color:#E8EDF2;font-size:2rem;margin-bottom:10px;display:block;"></i>
+        <div class="skill-name">Linux</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="section-label">Work</div>
+  <h2 class="section-title reveal">Projects I've <em>shipped</em></h2>
+  <div class="projects-grid">
+    <!-- Featured -->
+    <a href="https://github.com/okellodev/Stretch_Therapy" target="_blank" class="project-card featured reveal">
+      <div>
+        <div class="project-header">
+          <div class="project-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+          <i class="fa-solid fa-arrow-up-right-from-square project-link-icon"></i>
+        </div>
+        <h3 class="project-title">Stretch Therapy</h3>
+        <p class="project-desc">A comprehensive web platform for stretch therapy practitioners. Features an integrated booking system, client management dashboard, and a Python-powered backend API for scheduling and payment workflows. Built for real practitioners with real users.</p>
+        <div class="project-tags">
+          <span class="tag tag-accent">Python</span>
+          <span class="tag tag-accent">JavaScript</span>
+          <span class="tag">REST API</span>
+          <span class="tag">Booking System</span>
+          <span class="tag">Full-stack</span>
+        </div>
+      </div>
+      <div class="project-visual">
+        <div class="project-visual-inner">
+          <div style="color:rgba(0,212,255,0.6);margin-bottom:8px">// stretch_therapy/api/booking.py</div>
+          <div>class BookingService:</div>
+          <div style="padding-left:16px">def schedule_session(</div>
+          <div style="padding-left:32px;color:#7B61FF">therapist_id,</div>
+          <div style="padding-left:32px;color:#7B61FF">client_id,</div>
+          <div style="padding-left:32px;color:#7B61FF">datetime</div>
+          <div style="padding-left:16px">):</div>
+          <div style="padding-left:32px;color:rgba(0,255,179,0.6)">→ confirm_and_notify()</div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Project 2 -->
+    <a href="https://github.com/okellodev/tra-koyeb" target="_blank" class="project-card reveal reveal-delay-1">
+      <div class="project-header">
+        <div class="project-icon" style="background:rgba(123,97,255,0.1);border-color:rgba(123,97,255,0.2);color:var(--accent2)"><i class="fa-solid fa-server"></i></div>
+        <i class="fa-solid fa-arrow-up-right-from-square project-link-icon"></i>
+      </div>
+      <h3 class="project-title">tra-koyeb</h3>
+      <p class="project-desc">Production deployment environment with automated CI/CD pipelines, Docker containerization, and Koyeb cloud configurations. Enables zero-downtime deployments with health monitoring.</p>
+      <div class="project-tags">
+        <span class="tag" style="background:rgba(123,97,255,0.08);border-color:rgba(123,97,255,0.2);color:var(--accent2)">DevOps</span>
+        <span class="tag" style="background:rgba(123,97,255,0.08);border-color:rgba(123,97,255,0.2);color:var(--accent2)">Docker</span>
+        <span class="tag">CI/CD</span>
+        <span class="tag">Koyeb</span>
+      </div>
+    </a>
+
+    <!-- Project 3 -->
+    <a href="https://github.com/okellodev/Guerison" target="_blank" class="project-card reveal reveal-delay-2">
+      <div class="project-header">
+        <div class="project-icon" style="background:rgba(0,255,179,0.08);border-color:rgba(0,255,179,0.2);color:var(--accent3)"><i class="fa-solid fa-mobile-screen"></i></div>
+        <i class="fa-solid fa-arrow-up-right-from-square project-link-icon"></i>
+      </div>
+      <h3 class="project-title">Guerison</h3>
+      <p class="project-desc">A cross-platform mobile application built with React Native and Expo. Configured with a robust environment setup including native modules, authentication flows, and API integration layers.</p>
+      <div class="project-tags">
+        <span class="tag" style="background:rgba(0,255,179,0.06);border-color:rgba(0,255,179,0.2);color:var(--accent3)">React Native</span>
+        <span class="tag" style="background:rgba(0,255,179,0.06);border-color:rgba(0,255,179,0.2);color:var(--accent3)">Expo</span>
+        <span class="tag">Mobile</span>
+        <span class="tag">Cross-platform</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<div class="certs-bg section-full" id="certifications">
+  <div class="section-inner">
+    <div class="section-label">Credentials</div>
+    <h2 class="section-title reveal">Verified <em>expertise</em></h2>
+    <div class="certs-grid">
+      <a href="https://github.com/okellodev/okellodev/blob/main/certs/aws-cert.pdf" target="_blank" class="cert-card reveal">
+        <i class="fa-brands fa-aws cert-issuer-icon" style="color:#FF9900"></i>
+        <div>
+          <div class="cert-name">Intro to Containers</div>
+          <div class="cert-issuer">Amazon Web Services</div>
+        </div>
+        <div class="cert-arrow">View credential <i class="fa-solid fa-arrow-right"></i></div>
+      </a>
+      <a href="https://github.com/okellodev/okellodev/blob/main/certs/aws-fargate.pdf" target="_blank" class="cert-card reveal reveal-delay-1">
+        <i class="fa-brands fa-aws cert-issuer-icon" style="color:#FF9900"></i>
+        <div>
+          <div class="cert-name">AWS Fargate Overview</div>
+          <div class="cert-issuer">Amazon Web Services</div>
+        </div>
+        <div class="cert-arrow">View credential <i class="fa-solid fa-arrow-right"></i></div>
+      </a>
+      <a href="https://github.com/okellodev/okellodev/blob/main/certs/devnet-associate.pdf" target="_blank" class="cert-card reveal reveal-delay-2">
+        <i class="fa-solid fa-network-wired cert-issuer-icon" style="color:#1BA0D7"></i>
+        <div>
+          <div class="cert-name">DevNet Associate</div>
+          <div class="cert-issuer">Cisco Networking Academy</div>
+        </div>
+        <div class="cert-arrow">View credential <i class="fa-solid fa-arrow-right"></i></div>
+      </a>
+      <a href="https://github.com/okellodev/okellodev/blob/main/certs/intro-to-cybersecurity.pdf" target="_blank" class="cert-card reveal reveal-delay-1">
+        <i class="fa-solid fa-shield-halved cert-issuer-icon" style="color:#EF4444"></i>
+        <div>
+          <div class="cert-name">Intro to Cybersecurity</div>
+          <div class="cert-issuer">Cisco / CompTIA</div>
+        </div>
+        <div class="cert-arrow">View credential <i class="fa-solid fa-arrow-right"></i></div>
+      </a>
+      <a href="https://github.com/okellodev/okellodev/blob/main/certs/python-essentials-1.pdf" target="_blank" class="cert-card reveal reveal-delay-2">
+        <i class="fa-brands fa-python cert-issuer-icon" style="color:#3776AB"></i>
+        <div>
+          <div class="cert-name">Python Essentials 1</div>
+          <div class="cert-issuer">Python Institute</div>
+        </div>
+        <div class="cert-arrow">View credential <i class="fa-solid fa-arrow-right"></i></div>
+      </a>
+      <a href="https://github.com/okellodev/okellodev/blob/main/certs/html-essentials.pdf" target="_blank" class="cert-card reveal reveal-delay-3">
+        <i class="fa-brands fa-html5 cert-issuer-icon" style="color:#E34F26"></i>
+        <div>
+          <div class="cert-name">HTML Essentials</div>
+          <div class="cert-issuer">Web Development</div>
+        </div>
+        <div class="cert-arrow">View credential <i class="fa-solid fa-arrow-right"></i></div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- GITHUB -->
+<section class="section github-section">
+  <div class="section-label">Activity</div>
+  <h2 class="section-title reveal">GitHub <em>presence</em></h2>
+  <div class="github-cards reveal">
+    <a href="https://github.com/okellodev" target="_blank" class="github-img-card">
+      <img src="https://github-readme-stats.vercel.app/api?username=okellodev&show_icons=true&theme=transparent&bg_color=0D111700&text_color=6B7685&title_color=00D4FF&icon_color=7B61FF&border_color=1E2830" alt="GitHub Stats" width="380">
+    </a>
+    <a href="https://github.com/okellodev" target="_blank" class="github-img-card">
+      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=okellodev&layout=compact&theme=transparent&bg_color=0D111700&text_color=6B7685&title_color=00D4FF&border_color=1E2830" alt="Top Languages" width="280">
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-bg section-full" id="contact">
+  <div class="section-inner">
+    <div class="section-label">Get in touch</div>
+    <h2 class="section-title reveal">Let's build something <em>together</em></h2>
+    <div class="contact-inner">
+      <div class="contact-info reveal">
+        <p>I'm open to freelance projects, full-time positions, and interesting collaborations. Whether you have a specific project in mind or just want to connect — reach out.</p>
+        <div class="contact-links">
+          <a href="https://wa.me/213551867896" target="_blank" class="contact-link">
+            <div class="contact-link-icon" style="color:#25D366"><i class="fa-brands fa-whatsapp"></i></div>
+            <div class="contact-link-text">
+              <span class="contact-link-label">WhatsApp</span>
+              <span class="contact-link-value">+213 551 867 896</span>
+            </div>
+          </a>
+          <a href="https://github.com/okellodev" target="_blank" class="contact-link">
+            <div class="contact-link-icon"><i class="fa-brands fa-github"></i></div>
+            <div class="contact-link-text">
+              <span class="contact-link-label">GitHub</span>
+              <span class="contact-link-value">github.com/okellodev</span>
+            </div>
+          </a>
+          <a href="https://bsky.app/profile/okellodev.bsky.social" target="_blank" class="contact-link">
+            <div class="contact-link-icon" style="color:#0285FF">
+              <svg viewBox="0 0 320 286" width="14" height="14" fill="currentColor"><path d="M69.364 19.146c36.687 27.806 76.148 83.575 90.636 114.439 14.488-30.864 53.949-86.633 90.636-114.439 33.423-25.323 74.065-17.067 69.364 36.37-2.31 26.255-8.239 58.747-11.838 67.854-10.45 26.44-38.835 34.708-66.568 29.837 36.425 7.152 48.069 26.96 35.807 51.574-18.73 37.585-80.463 29.155-117.401-14.773-36.938 43.928-98.671 52.358-117.401 14.773-12.262-24.614-.618-44.422 35.807-51.574-27.733 4.871-56.118-3.397-66.568-29.837-3.599-9.107-9.528-41.599-11.838-67.854-4.701-53.437 35.941-61.693 69.364-36.37z"/></svg>
+            </div>
+            <div class="contact-link-text">
+              <span class="contact-link-label">Bluesky</span>
+              <span class="contact-link-value">okellodev.bsky.social</span>
+            </div>
+          </a>
+          <a href="https://mastodon.social/@Logalgorithm" target="_blank" class="contact-link">
+            <div class="contact-link-icon" style="color:#5c4bdf"><i class="fa-brands fa-mastodon"></i></div>
+            <div class="contact-link-text">
+              <span class="contact-link-label">Mastodon</span>
+              <span class="contact-link-value">@Logalgorithm</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-2">
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label class="form-label">Your name</label>
+            <input type="text" class="form-input" placeholder="Jane Smith" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email address</label>
+            <input type="email" class="form-input" placeholder="jane@company.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Subject</label>
+            <input type="text" class="form-input" placeholder="Project proposal / Job opportunity / Collaboration">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message</label>
+            <textarea class="form-textarea" placeholder="Tell me about your project or opportunity..." required></textarea>
+          </div>
+          <button type="submit" class="btn-submit" id="submit-btn">
+            Send message →
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">OKELLO · System Architect</div>
+  <div class="footer-copy">© 2026 · Built with precision & caffeine</div>
+</footer>
+
+<script>
+// Custom cursor
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursor-ring');
+let mouseX = 0, mouseY = 0;
+let ringX = 0, ringY = 0;
+
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX; mouseY = e.clientY;
+  cursor.style.left = mouseX + 'px';
+  cursor.style.top = mouseY + 'px';
+});
+
+function animateRing() {
+  ringX += (mouseX - ringX) * 0.12;
+  ringY += (mouseY - ringY) * 0.12;
+  cursorRing.style.left = ringX + 'px';
+  cursorRing.style.top = ringY + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+// Nav scroll effect
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => observer.observe(el));
+
+// Contact form
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Sending...';
+  btn.style.opacity = '0.7';
+  setTimeout(() => {
+    btn.textContent = 'Message sent ✓';
+    btn.style.background = 'var(--accent3)';
+    setTimeout(() => {
+      btn.textContent = 'Send message →';
+      btn.style.background = 'var(--accent)';
+      btn.style.opacity = '1';
+      e.target.reset();
+    }, 3000);
+  }, 1200);
+}
+
+// Tilt effect on hero card
+const heroCard = document.querySelector('.hero-card-inner');
+if (heroCard) {
+  heroCard.addEventListener('mousemove', e => {
+    const rect = heroCard.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    heroCard.style.transform = `translateY(-4px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg)`;
+  });
+  heroCard.addEventListener('mouseleave', () => {
+    heroCard.style.transform = '';
+  });
+}
+</script>
 </body>
 </html>
