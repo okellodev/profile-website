@@ -901,8 +901,20 @@ footer {
 
 @media (max-width: 900px) {
   nav { padding: 16px 24px; }
-  .nav-links { display: none; }
-  .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: none; background: none; border: none; padding: 4px; }
+  .nav-links { 
+    display: none; 
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    flex-direction: column;
+    padding: 20px 24px;
+    gap: 16px;
+    border-bottom: 1px solid rgba(123,97,255,0.2);
+  }
+  .nav-links.active { display: flex; }
+  .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
   .hamburger span { width: 22px; height: 1.5px; background: var(--text); display: block; }
   .hero { padding: 100px 24px 60px; }
   .hero-inner { grid-template-columns: 1fr; gap: 40px; }
@@ -1437,6 +1449,14 @@ animateRing();
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Mobile menu toggle
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
 });
 
 // Scroll reveal
