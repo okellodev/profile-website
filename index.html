@@ -846,8 +846,8 @@ footer {
 /* Scroll reveal */
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+  transform: translateY(25px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 .reveal.visible {
   opacity: 1;
@@ -1458,8 +1458,12 @@ hamburger.addEventListener('click', () => {
   navLinks.classList.toggle('active');
 });
 
-// Scroll reveal - works both directions
+// Scroll reveal - works both directions on all devices
 const reveals = document.querySelectorAll('.reveal');
+const observerOptions = {
+  threshold: 0.05,
+  rootMargin: '0px 0px -20px 0px'
+};
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -1468,7 +1472,7 @@ const observer = new IntersectionObserver(entries => {
       entry.target.classList.remove('visible');
     }
   });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+}, observerOptions);
 reveals.forEach(el => observer.observe(el));
 
 // Contact form
