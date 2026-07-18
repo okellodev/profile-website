@@ -349,7 +349,7 @@ nav.scrolled { padding: 14px 48px; }
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 20px;
-  padding: 28px;
+  padding: 32px 28px 28px;
   position: relative;
   overflow: hidden;
   transition: border-color 0.3s, transform 0.3s var(--ease);
@@ -368,26 +368,28 @@ nav.scrolled { padding: 14px 48px; }
 }
 
 .profile-img-wrap {
-  width: 88px; height: 88px;
-  border-radius: 16px;
+  width: 130px; height: 130px;
+  border-radius: 20px;
   overflow: hidden;
   border: 2px solid var(--border-hover);
   margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
   position: relative;
 }
 .profile-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
 .profile-img-wrap::after {
   content: '';
   position: absolute;
-  bottom: 6px; right: 6px;
-  width: 10px; height: 10px;
+  bottom: 8px; right: 8px;
+  width: 14px; height: 14px;
   background: var(--accent3);
   border-radius: 50%;
-  border: 2px solid var(--surface);
+  border: 3px solid var(--surface);
 }
 
-.card-name { font-size: 1.3rem; font-weight: 700; margin-bottom: 4px; }
-.card-title { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); margin-bottom: 24px; }
+.card-name { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; text-align: center; }
+.card-title { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); margin-bottom: 24px; text-align: center; }
 
 .card-stats {
   display: grid;
@@ -407,6 +409,7 @@ nav.scrolled { padding: 14px 48px; }
 .card-socials {
   display: flex;
   gap: 10px;
+  justify-content: center;
 }
 .social-btn {
   width: 36px; height: 36px;
@@ -700,7 +703,15 @@ nav.scrolled { padding: 14px 48px; }
   transition: transform 0.3s var(--ease), border-color 0.3s;
 }
 .github-img-card:hover { transform: translateY(-5px); border-color: rgba(0,212,255,0.3); }
-.github-img-card img { display: block; }
+  .github-img-card img { display: block; }
+.github-img-card { transition: transform 0.3s var(--ease), border-color 0.3s; }
+.github-img-card:hover { transform: translateY(-5px); border-color: rgba(0,212,255,0.3) !important; }
+.github-repos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
 
 /* ABOUT / PHILOSOPHY */
 .about-grid {
@@ -928,6 +939,7 @@ footer {
   .about-grid { grid-template-columns: 1fr; gap: 40px; }
   .contact-inner { grid-template-columns: 1fr; gap: 40px; }
   footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px; }
+  .github-repos-grid { grid-template-columns: 1fr !important; }
 }
 
 @media (max-width: 600px) {
@@ -1005,7 +1017,7 @@ footer {
       <div class="floating-tag floating-tag-2"><span class="floating-tag-accent">function</span> buildSystem() { }</div>
       <div class="hero-card-inner">
         <div class="profile-img-wrap">
-          <img src="https://github.com/okellodev/okellodev/raw/main/profile.png" alt="Okello">
+          <img src="./okello.jpg" alt="Okello">
         </div>
         <div class="card-name">Okello</div>
         <div class="card-title">// System Architect · Full-Stack Dev</div>
@@ -1170,6 +1182,30 @@ footer {
         <i class="devicon-linux-plain" style="color:#E8EDF2;font-size:2rem;margin-bottom:10px;display:block;"></i>
         <div class="skill-name">Linux</div>
       </div>
+      <div class="skill-card reveal reveal-delay-2">
+        <i class="devicon-django-plain colored"></i>
+        <div class="skill-name">Django</div>
+      </div>
+      <div class="skill-card reveal reveal-delay-2">
+        <i class="devicon-typescript-plain colored"></i>
+        <div class="skill-name">TypeScript</div>
+      </div>
+      <div class="skill-card reveal reveal-delay-3">
+        <i class="devicon-postgresql-plain colored"></i>
+        <div class="skill-name">PostgreSQL</div>
+      </div>
+      <div class="skill-card reveal reveal-delay-3">
+        <i class="devicon-nextjs-original" style="color:#E8EDF2;font-size:2rem;margin-bottom:10px;display:block;"></i>
+        <div class="skill-name">Next.js</div>
+      </div>
+      <div class="skill-card reveal reveal-delay-4">
+        <i class="devicon-tailwindcss-plain colored"></i>
+        <div class="skill-name">Tailwind CSS</div>
+      </div>
+      <div class="skill-card reveal reveal-delay-4">
+        <i class="devicon-express-original colored"></i>
+        <div class="skill-name">Express.js</div>
+      </div>
     </div>
   </div>
 </div>
@@ -1232,22 +1268,23 @@ footer {
     </a>
 
     <!-- Project 3 -->
-    <a href="https://github.com/okellodev/Guerison/releases/download/v1.0.0/Guerison-App.apk" download="Guerison-App.apk" class="project-card reveal reveal-delay-2">
+    <a href="https://github.com/D-upe/ohalaOS" target="_blank" class="project-card reveal reveal-delay-2">
       <div class="project-header">
-        <div class="project-icon" style="background:rgba(0,255,179,0.08);border-color:rgba(0,255,179,0.2);color:var(--accent3)"><i class="fa-solid fa-mobile-screen"></i></div>
+        <div class="project-icon" style="background:rgba(123,97,255,0.08);border-color:rgba(123,97,255,0.2);color:var(--accent2)"><i class="fa-solid fa-building"></i></div>
         <i class="fa-solid fa-arrow-up-right-from-square project-link-icon"></i>
       </div>
-      <h3 class="project-title">Guerison</h3>
-      <p class="project-desc">A recovery companion app built with React Native and Expo. Features streak tracking to count clean days, daily goal setting, automatic reminders at 9:00 AM, breathing exercises, and real-time chat with accountability partners.</p>
+      <h3 class="project-title">Ohala Business OS</h3>
+      <p class="project-desc">A comprehensive multi-tenant business management platform providing retail businesses with inventory management, POS, CRM, accounting, and payment processing (M-Pesa/Stripe) in a single system. Features a DocType Engine (ERPNext-inspired) for dynamic form/field definitions, a plugin marketplace, and webhook automation engine.</p>
       <div class="project-tags">
-        <span class="tag" style="background:rgba(0,255,179,0.06);border-color:rgba(0,255,179,0.2);color:var(--accent3)">React Native</span>
-        <span class="tag" style="background:rgba(0,255,179,0.06);border-color:rgba(0,255,179,0.2);color:var(--accent3)">Expo</span>
-        <span class="tag">Mobile</span>
-        <span class="tag">PostgreSQL</span>
+        <span class="tag" style="background:rgba(123,97,255,0.06);border-color:rgba(123,97,255,0.2);color:var(--accent2)">Django</span>
+        <span class="tag" style="background:rgba(123,97,255,0.06);border-color:rgba(123,97,255,0.2);color:var(--accent2)">Next.js</span>
+        <span class="tag" style="background:rgba(123,97,255,0.06);border-color:rgba(123,97,255,0.2);color:var(--accent2)">PostgreSQL</span>
+        <span class="tag">Docker</span>
+        <span class="tag">AI</span>
       </div>
-      <div style="margin-top:16px;padding:12px;background:rgba(0,255,179,0.05);border-radius:8px;border:1px solid rgba(0,255,179,0.15);">
-        <div style="font-size:0.75rem;font-weight:700;color:var(--accent3);margin-bottom:6px;">App Overview</div>
-        <p style="font-size:0.8rem;color:rgba(232,237,242,0.7);line-height:1.5;">Guerison is a recovery companion app designed to support people on their journey to overcome addiction. Key features include: <strong>streak tracking</strong> to visualize clean days, <strong>daily goal setting</strong> with progress monitoring, <strong>automated reminders</strong> at 9:00 AM for check-ins, <strong>breathing & meditation exercises</strong> for mindfulness, <strong>daily motivational quotes</strong> and wisdom, and <strong>accountability partner chat</strong> for real-time support. Built with React Native, Expo, and PostgreSQL backend with secure session-based authentication.</p>
+      <div style="margin-top:16px;padding:12px;background:rgba(123,97,255,0.05);border-radius:8px;border:1px solid rgba(123,97,255,0.15);">
+        <div style="font-size:0.75rem;font-weight:700;color:var(--accent2);margin-bottom:6px;">Platform Highlights</div>
+        <p style="font-size:0.8rem;color:rgba(232,237,242,0.7);line-height:1.5;">Each tenant gets a branded subdomain dashboard with POS, inventory, sales analytics, and CRM. Integrates M-Pesa (Daraja API) and Stripe payments. AI system supports 18+ LLM providers (OpenAI, Anthropic, Gemini, etc.) with document AI for RAG. Includes email marketing, social media scheduling, and an automation engine with webhooks. Built with Django REST Framework, Next.js 15, Tailwind CSS, and Dockerized deployment.</p>
       </div>
     </a>
   </div>
@@ -1329,13 +1366,45 @@ footer {
 <!-- GITHUB -->
 <section class="section github-section">
   <div class="section-label">Activity</div>
-  <h2 class="section-title reveal">GitHub <em>presence</em></h2>
-  <div class="github-cards reveal">
-    <a href="https://github.com/okellodev" target="_blank" class="github-img-card">
-      <img src="https://github-readme-stats.vercel.app/api?username=okellodev&show_icons=true&theme=transparent&bg_color=0D111700&text_color=6B7685&title_color=00D4FF&icon_color=7B61FF&border_color=1E2830" alt="GitHub Stats" width="380">
+  <h2 class="section-title reveal">Open source <em>work</em></h2>
+  <div class="github-cards reveal github-repos-grid">
+    <a href="https://github.com/D-upe/ohalaOS" target="_blank" class="github-img-card" style="padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:14px;text-decoration:none;color:var(--text);transition:border-color 0.3s,transform 0.3s var(--ease);display:flex;flex-direction:column;gap:12px;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <i class="fa-brands fa-github" style="font-size:1.3rem;color:var(--accent);"></i>
+        <span style="font-weight:600;font-size:0.95rem;">D-upe/ohalaOS</span>
+      </div>
+      <p style="font-size:0.82rem;color:var(--muted);line-height:1.5;">Multi-tenant business OS — Django + Next.js with POS, inventory, AI, M-Pesa payments</p>
+      <div style="display:flex;gap:12px;font-family:var(--font-mono);font-size:0.68rem;color:var(--muted);">
+        <span><i class="fa-regular fa-star" style="margin-right:4px;"></i> Stars</span>
+        <span><i class="fa-solid fa-code-fork" style="margin-right:4px;"></i> Forks</span>
+      </div>
     </a>
-    <a href="https://github.com/okellodev" target="_blank" class="github-img-card">
-      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=okellodev&layout=compact&theme=transparent&bg_color=0D111700&text_color=6B7685&title_color=00D4FF&border_color=1E2830" alt="Top Languages" width="280">
+    <a href="https://github.com/okellodev/Stretch-Therapy-Kenya" target="_blank" class="github-img-card" style="padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:14px;text-decoration:none;color:var(--text);transition:border-color 0.3s,transform 0.3s var(--ease);display:flex;flex-direction:column;gap:12px;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <i class="fa-brands fa-github" style="font-size:1.3rem;color:var(--accent);"></i>
+        <span style="font-weight:600;font-size:0.95rem;">Stretch Therapy</span>
+      </div>
+      <p style="font-size:0.82rem;color:var(--muted);line-height:1.5;">Booking platform for stretch therapy practitioners — Express, Cal.com, n8n, PostgreSQL</p>
+      <div style="display:flex;gap:12px;font-family:var(--font-mono);font-size:0.68rem;color:var(--muted);">
+        <span><i class="fa-regular fa-star" style="margin-right:4px;"></i> Stars</span>
+        <span><i class="fa-solid fa-code-fork" style="margin-right:4px;"></i> Forks</span>
+      </div>
+    </a>
+    <a href="https://github.com/okellodev/Darja-Translate" target="_blank" class="github-img-card" style="padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:14px;text-decoration:none;color:var(--text);transition:border-color 0.3s,transform 0.3s var(--ease);display:flex;flex-direction:column;gap:12px;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <i class="fa-brands fa-github" style="font-size:1.3rem;color:var(--accent);"></i>
+        <span style="font-weight:600;font-size:0.95rem;">Darja Translate</span>
+      </div>
+      <p style="font-size:0.82rem;color:var(--muted);line-height:1.5;">AI Telegram bot translating Algerian Darja ↔ English ↔ French with voice & OCR support</p>
+      <div style="display:flex;gap:12px;font-family:var(--font-mono);font-size:0.68rem;color:var(--muted);">
+        <span><i class="fa-regular fa-star" style="margin-right:4px;"></i> Stars</span>
+        <span><i class="fa-solid fa-code-fork" style="margin-right:4px;"></i> Forks</span>
+      </div>
+    </a>
+    <a href="https://github.com/okellodev" target="_blank" class="github-img-card" style="padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:14px;text-decoration:none;color:var(--text);transition:border-color 0.3s,transform 0.3s var(--ease);display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:center;">
+      <i class="fa-brands fa-github" style="font-size:2.5rem;color:var(--accent);"></i>
+      <span style="font-weight:600;font-size:0.95rem;">View all repos →</span>
+      <p style="font-size:0.82rem;color:var(--muted);line-height:1.5;text-align:center;">github.com/okellodev</p>
     </a>
   </div>
 </section>
