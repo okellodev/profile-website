@@ -704,13 +704,6 @@ nav.scrolled { padding: 14px 48px; }
 }
 .github-img-card:hover { transform: translateY(-5px); border-color: rgba(0,212,255,0.3); }
   .github-img-card img { display: block; }
-.github-img-card { transition: transform 0.3s var(--ease), border-color 0.3s; }
-.github-img-card:hover { transform: translateY(-5px); border-color: rgba(0,212,255,0.3) !important; }
-.github-repos-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
 
 
 /* ABOUT / PHILOSOPHY */
@@ -939,7 +932,7 @@ footer {
   .about-grid { grid-template-columns: 1fr; gap: 40px; }
   .contact-inner { grid-template-columns: 1fr; gap: 40px; }
   footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px; }
-  .github-repos-grid { grid-template-columns: 1fr !important; }
+
 }
 
 @media (max-width: 600px) {
@@ -1000,7 +993,7 @@ footer {
           <i class="fa-solid fa-paper-plane"></i>
           Get in touch
         </a>
-        <a href="https://github.com/okellodev" target="_blank" class="btn-ghost">
+        <a href="https://github.com/D-upe" target="_blank" class="btn-ghost">
           <i class="fa-brands fa-github"></i>
           GitHub
         </a>
@@ -1040,7 +1033,7 @@ footer {
           </div>
         </div>
         <div class="card-socials">
-          <a href="https://github.com/okellodev" target="_blank" class="social-btn"><i class="fa-brands fa-github"></i></a>
+          <a href="https://github.com/D-upe" target="_blank" class="social-btn"><i class="fa-brands fa-github"></i></a>
           <a href="https://mastodon.social/@Logalgorithm" target="_blank" class="social-btn"><i class="fa-brands fa-mastodon"></i></a>
           <a href="https://bsky.app/profile/okellodev.bsky.social" target="_blank" class="social-btn">
             <svg viewBox="0 0 320 286" width="14" height="14" fill="currentColor"><path d="M69.364 19.146c36.687 27.806 76.148 83.575 90.636 114.439 14.488-30.864 53.949-86.633 90.636-114.439 33.423-25.323 74.065-17.067 69.364 36.37-2.31 26.255-8.239 58.747-11.838 67.854-10.45 26.44-38.835 34.708-66.568 29.837 36.425 7.152 48.069 26.96 35.807 51.574-18.73 37.585-80.463 29.155-117.401-14.773-36.938 43.928-98.671 52.358-117.401 14.773-12.262-24.614-.618-44.422 35.807-51.574-27.733 4.871-56.118-3.397-66.568-29.837-3.599-9.107-9.528-41.599-11.838-67.854-4.701-53.437 35.941-61.693 69.364-36.37z"/></svg>
@@ -1366,46 +1359,13 @@ footer {
 <!-- GITHUB -->
 <section class="section github-section">
   <div class="section-label">Activity</div>
-  <h2 class="section-title reveal">Open source <em>work</em></h2>
-  <div class="github-cards reveal github-repos-grid">
-    <a href="https://github.com/D-upe/ohalaOS" target="_blank" class="github-img-card" style="padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:14px;text-decoration:none;color:var(--text);transition:border-color 0.3s,transform 0.3s var(--ease);display:flex;flex-direction:column;gap:12px;">
-      <div style="display:flex;align-items:center;gap:10px;">
-        <i class="fa-brands fa-github" style="font-size:1.3rem;color:var(--accent);"></i>
-        <span style="font-weight:600;font-size:0.95rem;">D-upe/ohalaOS</span>
-        <span style="font-size:0.6rem;font-family:var(--font-mono);color:var(--muted);margin-left:auto;">🔒</span>
-      </div>
-      <p style="font-size:0.82rem;color:var(--muted);line-height:1.5;">Multi-tenant business OS (closed source) — Django + Next.js with POS, inventory, AI, M-Pesa payments</p>
-      <div style="display:flex;gap:12px;font-family:var(--font-mono);font-size:0.68rem;color:var(--muted);">
-        <span><i class="fa-regular fa-star" style="margin-right:4px;"></i> Stars</span>
-        <span><i class="fa-solid fa-code-fork" style="margin-right:4px;"></i> Forks</span>
-      </div>
+  <h2 class="section-title reveal">GitHub <em>presence</em></h2>
+  <div class="github-cards reveal">
+    <a href="https://github.com/D-upe" target="_blank" class="github-img-card">
+      <img src="https://github-readme-stats.vercel.app/api?username=D-upe&show_icons=true&theme=transparent&bg_color=0D111700&text_color=6B7685&title_color=00D4FF&icon_color=7B61FF&border_color=1E2830" alt="GitHub Stats" width="380">
     </a>
-    <a href="https://github.com/okellodev/Stretch-Therapy-Kenya" target="_blank" class="github-img-card" style="padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:14px;text-decoration:none;color:var(--text);transition:border-color 0.3s,transform 0.3s var(--ease);display:flex;flex-direction:column;gap:12px;">
-      <div style="display:flex;align-items:center;gap:10px;">
-        <i class="fa-brands fa-github" style="font-size:1.3rem;color:var(--accent);"></i>
-        <span style="font-weight:600;font-size:0.95rem;">Stretch Therapy</span>
-      </div>
-      <p style="font-size:0.82rem;color:var(--muted);line-height:1.5;">Booking platform for stretch therapy practitioners — Express, Cal.com, n8n, PostgreSQL</p>
-      <div style="display:flex;gap:12px;font-family:var(--font-mono);font-size:0.68rem;color:var(--muted);">
-        <span><i class="fa-regular fa-star" style="margin-right:4px;"></i> Stars</span>
-        <span><i class="fa-solid fa-code-fork" style="margin-right:4px;"></i> Forks</span>
-      </div>
-    </a>
-    <a href="https://github.com/okellodev/Darja-Translate" target="_blank" class="github-img-card" style="padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:14px;text-decoration:none;color:var(--text);transition:border-color 0.3s,transform 0.3s var(--ease);display:flex;flex-direction:column;gap:12px;">
-      <div style="display:flex;align-items:center;gap:10px;">
-        <i class="fa-brands fa-github" style="font-size:1.3rem;color:var(--accent);"></i>
-        <span style="font-weight:600;font-size:0.95rem;">Darja Translate</span>
-      </div>
-      <p style="font-size:0.82rem;color:var(--muted);line-height:1.5;">AI Telegram bot translating Algerian Darja ↔ English ↔ French with voice & OCR support</p>
-      <div style="display:flex;gap:12px;font-family:var(--font-mono);font-size:0.68rem;color:var(--muted);">
-        <span><i class="fa-regular fa-star" style="margin-right:4px;"></i> Stars</span>
-        <span><i class="fa-solid fa-code-fork" style="margin-right:4px;"></i> Forks</span>
-      </div>
-    </a>
-    <a href="https://github.com/okellodev" target="_blank" class="github-img-card" style="padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:14px;text-decoration:none;color:var(--text);transition:border-color 0.3s,transform 0.3s var(--ease);display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:center;">
-      <i class="fa-brands fa-github" style="font-size:2.5rem;color:var(--accent);"></i>
-      <span style="font-weight:600;font-size:0.95rem;">View all repos →</span>
-      <p style="font-size:0.82rem;color:var(--muted);line-height:1.5;text-align:center;">github.com/okellodev</p>
+    <a href="https://github.com/D-upe" target="_blank" class="github-img-card">
+      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=D-upe&layout=compact&theme=transparent&bg_color=0D111700&text_color=6B7685&title_color=00D4FF&border_color=1E2830" alt="Top Languages" width="280">
     </a>
   </div>
 </section>
@@ -1420,11 +1380,11 @@ footer {
         <p>I'm open to freelance projects, full-time positions, and interesting collaborations. Whether you have a specific project in mind or just want to connect — reach out.</p>
         <div class="contact-links">
           
-          <a href="mailto:admin@okellodev.us.kg" class="contact-link">
+          <a href="mailto:benedictusokello@gmail.com" class="contact-link">
             <div class="contact-link-icon" style="color:#00D4FF"><i class="fa-solid fa-envelope"></i></div>
             <div class="contact-link-text">
               <span class="contact-link-label">Email</span>
-              <span class="contact-link-value">admin@okellodev.us.kg</span>
+              <span class="contact-link-value">benedictusokello@gmail.com</span>
             </div>
           </a>
           <a href="https://wa.me/213551867896" target="_blank" class="contact-link">
@@ -1434,11 +1394,11 @@ footer {
               <span class="contact-link-value">+213 551 867 896</span>
             </div>
           </a>
-          <a href="https://github.com/okellodev" target="_blank" class="contact-link">
+          <a href="https://github.com/D-upe" target="_blank" class="contact-link">
             <div class="contact-link-icon"><i class="fa-brands fa-github"></i></div>
             <div class="contact-link-text">
               <span class="contact-link-label">GitHub</span>
-              <span class="contact-link-value">github.com/okellodev</span>
+              <span class="contact-link-value">github.com/D-upe</span>
             </div>
           </a>
           <a href="https://bsky.app/profile/okellodev.bsky.social" target="_blank" class="contact-link">
