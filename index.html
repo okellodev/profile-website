@@ -1361,10 +1361,35 @@ footer {
 <section class="section github-section">
   <div class="section-label">Activity</div>
   <h2 class="section-title reveal">GitHub <em>presence</em></h2>
-  <div class="github-cards reveal">
-    <a href="https://github.com/D-upe" target="_blank" class="github-img-card">
-      <img src="https://gh-readme-stats.vercel.app/api?username=D-upe&show_icons=true&theme=transparent&bg_color=0D111700&text_color=6B7685&title_color=00D4FF&icon_color=7B61FF&border_color=1E2830" alt="GitHub Stats" width="380">
-    </a>
+  <div class="github-cards reveal" id="gh-stats">
+    <div class="github-img-card" style="padding:28px;background:var(--surface);border:1px solid var(--border);border-radius:14px;min-width:340px;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+        <i class="fa-brands fa-github" style="font-size:1.8rem;color:var(--accent);"></i>
+        <div>
+          <div style="font-weight:700;font-size:1rem;">D-upe</div>
+          <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);">@D-upe · 2026 activity</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div class="stat-item">
+          <div class="stat-val" id="gh-commits">—</div>
+          <div class="stat-label">Contributions (2026)</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val" id="gh-repos">—</div>
+          <div class="stat-label">Public Repos</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val" id="gh-stars">—</div>
+          <div class="stat-label">Stars Earned</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val" id="gh-followers">—</div>
+          <div class="stat-label">Followers</div>
+        </div>
+      </div>
+      <a href="https://github.com/D-upe" target="_blank" style="display:block;margin-top:16px;font-family:var(--font-mono);font-size:0.68rem;color:var(--accent);text-decoration:none;text-align:center;">View profile →</a>
+    </div>
     <a href="https://github.com/D-upe" target="_blank" class="github-img-card">
       <img src="https://gh-readme-stats.vercel.app/api/top-langs/?username=D-upe&layout=compact&theme=transparent&bg_color=0D111700&text_color=6B7685&title_color=00D4FF&border_color=1E2830" alt="Top Languages" width="280">
     </a>
@@ -1553,6 +1578,29 @@ async function handleSubmit(e) {
     btn.disabled = false;
   }, 4000);
 }
+
+// GitHub stats
+async function loadGitHubStats() {
+  try {
+    const [contribRes, userRes, reposRes] = await Promise.all([
+      fetch('https://github-contributions.vercel.app/api/v1/D-upe?format=json'),
+      fetch('https://api.github.com/users/D-upe'),
+      fetch('https://api.github.com/users/D-upe/repos?per_page=100&sort=updated')
+    ]);
+    const contribData = await contribRes.json();
+    const userData = await userRes.json();
+    const repos = await reposRes.json();
+    const stars = repos.reduce((s, r) => s + (r.stargazers_count || 0), 0);
+    const thisYear = contribData.years?.find(y => y.year === '2026');
+    document.getElementById('gh-commits').textContent = thisYear?.total ?? '—';
+    document.getElementById('gh-repos').textContent = userData.public_repos ?? '—';
+    document.getElementById('gh-stars').textContent = stars ?? '—';
+    document.getElementById('gh-followers').textContent = userData.followers ?? '—';
+  } catch(e) {
+    // fallback silently
+  }
+}
+loadGitHubStats();
 
 // Tilt effect on hero card
 const heroCard = document.querySelector('.hero-card-inner');
