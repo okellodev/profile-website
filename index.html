@@ -1583,7 +1583,7 @@ async function handleSubmit(e) {
 async function loadGitHubStats() {
   try {
     const [contribRes, userRes, reposRes] = await Promise.all([
-      fetch('https://github-contributions.vercel.app/api/v1/D-upe?format=json'),
+      fetch('https://github-contributions-api.deno.dev/D-upe.json'),
       fetch('https://api.github.com/users/D-upe'),
       fetch('https://api.github.com/users/D-upe/repos?per_page=100&sort=updated')
     ]);
@@ -1591,10 +1591,13 @@ async function loadGitHubStats() {
     const userData = await userRes.json();
     const repos = await reposRes.json();
     const stars = repos.reduce((s, r) => s + (r.stargazers_count || 0), 0);
-    const thisYear = contribData.years?.find(y => y.year === '2026');
-    document.getElementById('gh-commits').textContent = thisYear?.total ?? '—';
+    const thisYear = contribData.contributions
+      .flat()
+      .filter(c => c.date.startsWith('2026'))
+      .reduce((s, c) => s + (c.contributionCount || 0), 0);
+    document.getElementById('gh-commits').textContent = thisYear || '—';
     document.getElementById('gh-repos').textContent = userData.public_repos ?? '—';
-    document.getElementById('gh-stars').textContent = stars ?? '—';
+    document.getElementById('gh-stars').textContent = stars || '—';
     document.getElementById('gh-followers').textContent = userData.followers ?? '—';
   } catch(e) {
     // fallback silently
