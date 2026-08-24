@@ -1,6 +1,9 @@
 .env.local
 node_modules/
 
+# deploy keys — never commit
+.deploy-key*
+
 # wrangler files
 .wrangler
 .dev.vars*
